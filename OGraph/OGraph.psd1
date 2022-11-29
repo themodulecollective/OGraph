@@ -83,6 +83,7 @@
         'Get-OGSiteListColumns'
         'Get-OGSiteListItem'
         'Get-OGNextPage'
+        'Get-OGReadableSku'
         'Get-OGSkus'
         'Get-OGUser'
         'Get-OGUserDrive'

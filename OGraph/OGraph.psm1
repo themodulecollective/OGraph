@@ -22,6 +22,7 @@ $Script:ModuleFiles = @(
     $(Join-Path -Path $functions -ChildPath 'Get-OGSiteListColumns.ps1')
     $(Join-Path -Path $functions -ChildPath 'Get-OGSiteListItem.ps1')
     $(Join-Path -Path $functions -ChildPath 'Get-OGNextPage.ps1')
+    $(Join-Path -Path $functions -ChildPath 'Get-OGReadableSku.ps1')
     $(Join-Path -Path $functions -ChildPath 'Get-OGSkus.ps1')
     $(Join-Path -Path $functions -ChildPath 'Get-OGUser.ps1')
     $(Join-Path -Path $functions -ChildPath 'Get-OGUserDrive.ps1')

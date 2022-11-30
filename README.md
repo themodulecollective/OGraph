@@ -17,7 +17,7 @@ Welcome To Microsoft Graph!
 
 Another example of added functionality is Get-GroupLicenseReport. Currenlty there is no clean method to programaticaly get a human readable list of Skus and enabled service plans from a licensing group. This function provides that report by getting Skus used in a tenant and comparing them to the guids provided by the Groups assignedLicenses endpoint.
 
-``` 
+```
 Get-OGGroupLicenseReport -GroupId a215dd48-4e3a-46bf-bb63-8f93a9fcaecc
 
 groupDisplayName              : LicensingTest
@@ -76,10 +76,10 @@ servicePlanIsEnabled          : False
 
 # Getting Started
 
-First, Import the module using: 
+First, Import the module using:
 
 ```
-Import-Module M365GraphAdmin
+Import-Module OGraph
 ```
 
 Next get connected. If you are using a Azure AD application for your graph permission, you can use a Certificate Thumbprint or Access Secret to generate a new token and authenticate:

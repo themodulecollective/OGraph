@@ -1,65 +1,35 @@
 <#
 .SYNOPSIS
-Provide human readable description to M365 Service Plans by parsing the Microsoft Docs here:
-https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/active-directory/enterprise-users/licensing-service-plan-reference.md
+Provide human readable description to M365 Service Plans by downloading the csv in the Microsoft Docs reference.
 
 .DESCRIPTION
-Long description
+Provide human readable description to M365 Service Plans by downloading the csv in the Microsoft Docs reference. If the CSV fails to download a local copy will be used for the output. If the download is successful, the local copy will be updated.
 
 .EXAMPLE
-An example
+Get-OGReadableSku
 
 .NOTES
-Many thanks to junecastillote for his work found here: https://github.com/junecastillote/Microsoft-365-License-Friendly-Names
 
-MIT License
-
-Copyright (c) 2020 June Castillote
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
 #>
 function Get-OGReadableSku {
     [CmdletBinding()]
     param ()
-    $URL = 'https://raw.githubusercontent.com/MicrosoftDocs/azure-docs/master/articles/active-directory/enterprise-users/licensing-service-plan-reference.md'
-    [System.Collections.ArrayList]$raw_Table = ((New-Object System.Net.WebClient).DownloadString($URL) -split "`n")
-    $startLine = $raw_Table.IndexOf('| Product name | String ID | GUID | Service plans included | Service plans included (friendly names) |')
-    $endLine = ($raw_Table.IndexOf('## Service plans that cannot be assigned at the same time') - 1)
-    $result = @()
-    for ($i = $startLine; $i -lt $endLine; $i++) {
-        if ($raw_Table[$i] -notlike "*---*") {
-            $result += ($raw_Table[$i].Substring(1, $raw_Table[$i].Length - 1))
-        }
+    $url = "https://download.microsoft.com/download/e/3/e/e3e9faf2-f28b-490a-9ada-c6089a1fc5b0/Product%20names%20and%20service%20plan%20identifiers%20for%20licensing.csv"
+    $temp = Get-PSDrive -Name "Temp"
+    $joinPath = Join-Path -Path $temp.Root -ChildPath "OGReadableSku.csv"
+    try { Invoke-WebRequest -Uri $url -OutFile $joinPath }
+    catch {}
+    if (test-path -Path $joinPath) {
+        $output = Import-Csv -Path $joinPath
+        Remove-Item -Path $joinPath
+        $getLocalCSV = $PSScriptRoot.Substring(0, $PSScriptRoot.Length - 10)
+        $joinPath2 = Join-Path -Path $getLocalCSV -ChildPath '\OGReadableSku.csv'
+        $output | export-csv -Path $joinPath2
+        $output
     }
-    $result = $result `
-        -replace '\s*\|\s*', '|' `
-        -replace '\s*<br/>\s*', ',' `
-        -replace '\(\(', '(' `
-        -replace '\)\)', ')' `
-        -replace '\)\s*\(', ')('
-    $result = @($result | ConvertFrom-Csv -Delimiter "|" -Header 'SkuName', 'SkuPartNumber', 'SkuID', 'ChildServicePlan', 'ChildServicePlanName')
-    $TextInfo = (Get-Culture).TextInfo
-    $i = 0
-    $result | ForEach-Object {
-        $result[$i].SkuName = $TextInfo.ToTitleCase(($PSItem.SkuName).ToLower())
-        $result[$i].ChildServicePlanName = $TextInfo.ToTitleCase(($PSItem.ChildServicePlanName).ToLower())
-        $i++
+    else {
+        $getLocalCSV = $PSScriptRoot.Substring(0, $PSScriptRoot.Length - 10)
+        $joinPath2 = Join-Path -Path $getLocalCSV -ChildPath '\OGReadableSku.csv'
+        Import-Csv -Path $joinPath2
     }
-    $result
 }

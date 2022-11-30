@@ -78,17 +78,24 @@ servicePlanIsEnabled          : False
 
 First, Import the module using: 
 
-`Import-Module M365GraphAdmin`
+```
+Import-Module M365GraphAdmin
+```
 
 Next get connected. If you are using a Azure AD application for your graph permission, you can use a Certificate Thumbprint or Access Secret to generate a new token and authenticate:
-``` 
+
+```
 Connect-OGGraph -ApplicationID [App ID] -TenantID [Tenant ID] -AccessSecret [Access secret]
 ```
 
 To use your Azure AD credentials:
 
-`Connect-OGGraph -Online`
+```
+Connect-OGGraph -Online
+```
 
 This module uses Graph API v1.0 by default. Run this command to switch between versions:
 
-`Set-OGVersion -beta`
+```
+Set-OGVersion -beta
+```

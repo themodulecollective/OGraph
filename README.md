@@ -81,7 +81,8 @@ First, Import the module using:
 `Import-Module M365GraphAdmin`
 
 Next get connected. If you are using a Azure AD application for your graph permission, you can use a Certificate Thumbprint or Access Secret to generate a new token and authenticate:
-`Connect-OGGraph -ApplicationID [App ID] -TenantID [Tenant ID] -AccessSecret [Access secret]`
+``` Connect-OGGraph -ApplicationID [App ID] -TenantID [Tenant ID] -AccessSecret [Access secret]
+```
 
 To use your Azure AD credentials:
 

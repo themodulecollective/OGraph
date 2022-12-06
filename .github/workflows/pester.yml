@@ -16,7 +16,7 @@ jobs:
       - name: Lint with Pester
         shell: pwsh
         run: |
-          Invoke-Pester /home/runner/.local/share/powershell/Modules/OGraph/Tests/Help.Tests.ps1 -Passthru
-          Invoke-Pester /home/runner/.local/share/powershell/Modules/OGraph/Tests/Module.Tests.ps1 -Passthru
-          Invoke-Pester /home/runner/.local/share/powershell/Modules/OGraph/Tests/Pester.Tests.ps1 -Passthru
-          Invoke-Pester /home/runner/.local/share/powershell/Modules/OGraph/Tests/ScriptAnalyzer.Tests.ps1 -Passthru
+          Invoke-Pester /home/runner/work/OGraph/OGraph/tests/Help.Tests.ps1 -Passthru
+          #Invoke-Pester Module.Tests.ps1 -Passthru
+          #Invoke-Pester Pester.Tests.ps1 -Passthru
+          #Invoke-Pester ScriptAnalyzer.Tests.ps1 -Passthru

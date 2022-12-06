@@ -24,7 +24,7 @@ General notes
 #>
 Function Remove-OGGroupMember {
 
-    [CmdletBinding(DefaultParameterSetName = 'MID')]
+    [CmdletBinding(DefaultParameterSetName = 'MID', SupportsShouldProcess)]
     param (
         [Parameter(Mandatory,
             ParameterSetName = 'MID')]
@@ -49,5 +49,7 @@ Function Remove-OGGroupMember {
         Uri    = $URI
         Method = 'DELETE'
     }
-    Invoke-MgGraphRequest @Account_params
+    if ($PSCmdlet.ShouldProcess($GroupID, "remove member $($UserPrincipalName)$($MemberId)")) {
+        Invoke-MgGraphRequest @Account_params
+    }
 }

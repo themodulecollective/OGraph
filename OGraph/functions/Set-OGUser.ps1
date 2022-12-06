@@ -32,8 +32,7 @@ Set-OGUser -UserPrincipalName jdoe@contoso.com -accountEnabled $false
 General notes
 #>
 Function Set-OGUser {
-
-    [CmdletBinding()]
+    [CmdletBinding(SupportsShouldProcess)]
     Param(
         [Parameter(Mandatory)]$UserPrincipalName,
         [Parameter(Mandatory = $false)][String]$NewUserPrincipalName,
@@ -44,20 +43,22 @@ Function Set-OGUser {
     )
     $User = Get-OGUser -UserPrincipalName $UserPrincipalName
     $bodyparams = @{}
-    if ($NewUserPrincipalName) {
-        $bodyparams.add('userPrincipalName', $NewUserPrincipalName)
-    }
-    if ($accountEnabled) {
-        $bodyparams.add('accountEnabled', $accountEnabled)
-    }
-    if ($FirstName) {
-        $bodyparams.add('givenName', $FirstName)
-    }
-    if ($LastName) {
-        $bodyparams.add('surname', $LastName)
-    }
-    if ($DisplayName) {
-        $bodyparams.add('displayName', $DisplayName)
+    switch ($PSBoundParameters.Keys) {
+        'NewUserPrincipalName' {
+            $bodyparams.add('userPrincipalName', $NewUserPrincipalName)
+        }
+        'accountEnabled' {
+            $bodyparams.add('accountEnabled', $accountEnabled)
+        }
+        'FirstName' {
+            $bodyparams.add('givenName', $FirstName)
+        }
+        'LastName' {
+            $bodyparams.add('surname', $LastName)
+        }
+        'DisplayName' {
+            $bodyparams.add('displayName', $DisplayName)
+        }
     }
     $Body = [PSCustomObject]@{}
     $body | Add-Member $bodyparams
@@ -67,8 +68,7 @@ Function Set-OGUser {
         Method      = 'PATCH'
         ContentType = 'application/json'
     }
-    if (condition) {
-        <# Action to perform if the condition is true #>
+    if ($PSCmdlet.ShouldProcess($UserPrincipalName, "set $($bodyparams.keys)")) {
+        Invoke-MgGraphRequest @Account_params | Out-Null
     }
-    Invoke-MgGraphRequest @Account_params | Out-Null
 }

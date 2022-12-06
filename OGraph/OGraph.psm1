@@ -1,10 +1,6 @@
 $ModuleFolder = Split-Path $PSCommandPath -Parent
-
 $Scripts = Join-Path -Path $ModuleFolder -ChildPath 'scripts'
 $Functions = Join-Path -Path $ModuleFolder -ChildPath 'functions'
-
-# Write-Information -MessageData "Scripts Path  = $Scripts" -InformationAction Continue
-# Write-Information -MessageData "Functions Path  = $Functions" -InformationAction Continue
 
 $Script:ModuleFiles = @(
     $(Join-Path -Path $Scripts -ChildPath 'Initialize.ps1')
@@ -34,8 +30,6 @@ $Script:ModuleFiles = @(
     # Finalize / Run any Module Functions defined above
     $(Join-Path -Path $Scripts -ChildPath 'RunFunctions.ps1')
 )
-
-# Write-Information -MessageData $($ModuleFiles -join ';') -InformationAction Continue
 
 foreach ($f in $ModuleFiles) {
     . $f

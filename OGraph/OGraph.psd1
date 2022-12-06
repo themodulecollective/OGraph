@@ -30,7 +30,7 @@
     Copyright            = 'Copyright 2022 The Module Collective'
 
     # Description of the functionality provided by this module
-    # Description = ''
+    Description          = 'PowerShell functions for administration of Microsoft 365 services using Graph endpoints'
 
     # Minimum version of the PowerShell engine required by this module
     PowerShellVersion    = '7.0'

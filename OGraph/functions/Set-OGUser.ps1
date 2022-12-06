@@ -68,6 +68,4 @@ Function Set-OGUser {
         ContentType = 'application/json'
     }
     $quietrun = Invoke-GraphRequest @Account_params
-
 }
-

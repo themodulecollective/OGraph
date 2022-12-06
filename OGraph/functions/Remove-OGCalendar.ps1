@@ -23,7 +23,7 @@ General notes
 #>
 Function Remove-OGCalendar {
 
-    [CmdletBinding(DefaultParameterSetName = 'UPN')]
+    [CmdletBinding(DefaultParameterSetName = 'UPN', SupportsShouldProcess)]
     param (
         [Parameter(Mandatory)]$UserPrincipalName,
         [Parameter(Mandatory)]$Id
@@ -33,5 +33,7 @@ Function Remove-OGCalendar {
         Uri    = $URI
         Method = 'DELETE'
     }
-    Invoke-MgGraphRequest @Account_params
+    if ($PSCmdlet.ShouldProcess($UserPrincipalName, "remove calendar $($id)")) {
+        Invoke-MgGraphRequest @Account_params
+    }
 }

@@ -17,6 +17,6 @@ jobs:
         shell: pwsh
         run: |
           Invoke-Pester /home/runner/work/OGraph/OGraph/tests/Help.Tests.ps1 -Passthru
-          #Invoke-Pester Module.Tests.ps1 -Passthru
-          #Invoke-Pester Pester.Tests.ps1 -Passthru
-          #Invoke-Pester ScriptAnalyzer.Tests.ps1 -Passthru
+          Invoke-Pester /home/runner/work/OGraph/OGraph/tests/Module.Tests.ps1 -Passthru
+          Invoke-Pester /home/runner/work/OGraph/OGraph/tests/Pester.Tests.ps1 -Passthru
+          Invoke-Pester /home/runner/work/OGraph/OGraph/tests/ScriptAnalyzer.Tests.ps1 -Passthru

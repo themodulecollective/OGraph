@@ -13,12 +13,12 @@ Parameter description
 Parameter description
 
 .EXAMPLE
-Get-OGSiteListColumns -SiteId b767d342-3712-492a-94dc-504304cb8412 -ListId c1e7d5b3-ed9e-409e-a956-9d77df7c1ec3
+Get-OGSiteListColumn -SiteId b767d342-3712-492a-94dc-504304cb8412 -ListId c1e7d5b3-ed9e-409e-a956-9d77df7c1ec3
 
 .NOTES
 General notes
 #>
-Function Get-OGSiteListColumns {
+Function Get-OGSiteListColumn {
 
     [CmdletBinding()]
     param (

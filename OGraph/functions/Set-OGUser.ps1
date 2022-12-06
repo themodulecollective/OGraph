@@ -67,5 +67,8 @@ Function Set-OGUser {
         Method      = 'PATCH'
         ContentType = 'application/json'
     }
-    $quietrun = Invoke-MgGraphRequest @Account_params
+    if (condition) {
+        <# Action to perform if the condition is true #>
+    }
+    Invoke-MgGraphRequest @Account_params | Out-Null
 }

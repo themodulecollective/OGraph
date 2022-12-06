@@ -14,12 +14,12 @@ Parameter description
 
 .EXAMPLE
 Get all calendar events for a group
-Get-OGUserEvents -GroupId 3fbabd10-7bbc-410d-ba6c-0ba60e863c30
+Get-OGUserEvent -GroupId 3fbabd10-7bbc-410d-ba6c-0ba60e863c30
 
 .NOTES
 General notes
 #>
-Function Get-OGUserEvents {
+Function Get-OGUserEvent {
     param (
         [Parameter(Mandatory = $True)]$UserPrincipalName,
         [Parameter(Mandatory = $False)]$Filter

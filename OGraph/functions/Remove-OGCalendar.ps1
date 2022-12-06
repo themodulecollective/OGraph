@@ -33,5 +33,5 @@ Function Remove-OGCalendar {
         Uri    = $URI
         Method = 'DELETE'
     }
-    Invoke-GraphRequest @Account_params
+    Invoke-MgGraphRequest @Account_params
 }

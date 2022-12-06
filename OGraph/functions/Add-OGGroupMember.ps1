@@ -54,5 +54,5 @@ Function Add-OGGroupMember {
         Body   = $Body | ConvertTo-Json
         Method = 'POST'
     }
-    Invoke-GraphRequest @Account_params
+    Invoke-MgGraphRequest @Account_params
 }

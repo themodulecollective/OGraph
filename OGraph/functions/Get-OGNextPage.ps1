@@ -35,7 +35,7 @@ Function Get-OGNextPage {
             $account_params.Headers.add('ConsistencyLevel', 'eventual')
         }
     }
-    $Result = Invoke-GraphRequest @Account_params
+    $Result = Invoke-MgGraphRequest @Account_params
     switch ($null -ne $Result.value) {
         $true {
             $Result.value

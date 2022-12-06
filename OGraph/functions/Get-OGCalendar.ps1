@@ -31,6 +31,6 @@ Function Get-OGCalendar {
     }
     else {
         $URI = "/$GraphVersion/users/$UserPrincipalName/calendars"
-        Get-OGNextPage -uri $URI    
+        Get-OGNextPage -uri $URI
     }
 }

@@ -67,5 +67,5 @@ Function Set-OGUser {
         Method      = 'PATCH'
         ContentType = 'application/json'
     }
-    $quietrun = Invoke-GraphRequest @Account_params
+    $quietrun = Invoke-MgGraphRequest @Account_params
 }

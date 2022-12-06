@@ -40,7 +40,7 @@ Function Get-OGSite {
                 OutputType  = 'PSObject'
                 ContentType = 'application/json'
             }
-            Invoke-GraphRequest @Account_params
+            Invoke-MgGraphRequest @Account_params
         }
         'All' {
             $URI = "/$GraphVersion/sites/?$search=*"

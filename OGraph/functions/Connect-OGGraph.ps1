@@ -14,6 +14,15 @@ Parameter description
 .PARAMETER AccessSecret
 Parameter description
 
+.PARAMETER CertificateThumbprint
+Parameter description
+
+.PARAMETER Online
+Parameter description
+
+.PARAMETER AccessToken
+Parameter description
+
 .EXAMPLE
 Authenticate to graph with application access secret:
 Connect-OGGraph -ApplicationID f3857fc2-d4a5-1427-8f4c-2bdcd0cd9a2d -TenantID 27f1409e-4f28-4115-8ef5-71058ab01821 -AccessSecret Rb4324~JBiAJclWeG1W239CPgKHlChi9l0423jjdg~

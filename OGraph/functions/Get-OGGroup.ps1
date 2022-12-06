@@ -15,6 +15,9 @@ Parameter description
 .PARAMETER All
 Parameter description
 
+.PARAMETER Property
+Parameter description
+
 .EXAMPLE
 Get a group by Object ID
 Get-OGGroup -GroupId 3175b598-0fa0-4002-aebf-bfbf759c94a7

@@ -6,7 +6,7 @@ Get calendar events for a user
 Get calendar events for a user or provide a filter queary to filter the results.
 
 Permissions: https://learn.microsoft.com/en-us/graph/api/user-list-events?view=graph-rest-1.0&tabs=http
-.PARAMETER GroupId
+.PARAMETER UserPrincipalName
 Parameter description
 
 .PARAMETER Filter

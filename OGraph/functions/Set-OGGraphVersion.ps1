@@ -12,7 +12,7 @@ Parameter description
 Parameter description
 
 .EXAMPLE
-Set-OGVersion -beta
+Set-OGGraphVersion -Beta
 
 .NOTES
 General notes

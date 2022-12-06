@@ -6,11 +6,15 @@ Remove member from Azure AD group membership
 Remove member from Azure AD group membership
 
 Permissions: https://learn.microsoft.com/en-us/graph/api/group-delete-members?view=graph-rest-1.0&tabs=http
-.PARAMETER ObjectId
-Id of the groupt to remove the user from
+
+.PARAMETER GroupId
+Parameter description
+
+.PARAMETER UserPrincipalName
+Parameter description
 
 .PARAMETER MemberId
-Id of the user
+Parameter description
 
 .EXAMPLE
 Remove-OGGroupMember -ObjectId a3299706-eac5-46a1-b5eb-5709bea18e89 -MemberId b767d342-3712-492a-94dc-504304cb8412

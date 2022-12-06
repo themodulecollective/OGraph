@@ -7,13 +7,13 @@ Add a group member using its object id or user principal name. If using the late
 
 Permissions: https://learn.microsoft.com/en-us/graph/api/group-post-members?view=graph-rest-1.0&tabs=http
 
-.PARAMETER GroupObjectID
+.PARAMETER GroupId
 Parameter description
 
 .PARAMETER UserPrincipalName
 Parameter description
 
-.PARAMETER UserObjectID
+.PARAMETER MemberId
 Parameter description
 
 .EXAMPLE

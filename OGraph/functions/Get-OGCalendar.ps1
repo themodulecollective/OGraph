@@ -10,10 +10,7 @@ Permissions: https://learn.microsoft.com/en-us/graph/api/user-list-calendars?vie
 .PARAMETER UserPrincipalName
 Parameter description
 
-.PARAMETER SearchDisplayName
-Parameter description
-
-.PARAMETER All
+.PARAMETER Id
 Parameter description
 
 .EXAMPLE

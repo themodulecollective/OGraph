@@ -16,7 +16,7 @@ Parameter description
 Parameter description
 
 .EXAMPLE
-An example
+Get-OGSite -SiteId f232e745-0801-4705-beb6-4d9880fc92b4
 
 .NOTES
 General notes

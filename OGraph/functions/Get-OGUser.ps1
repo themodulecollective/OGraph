@@ -15,6 +15,9 @@ Search for users by displayname
 .PARAMETER All
 Get all users in tenant
 
+.PARAMETER Property
+Select additional properties of a user
+
 .EXAMPLE
 Get-OGUser -UserPrincipalName test@testaccount.onmicrosoft.com
 

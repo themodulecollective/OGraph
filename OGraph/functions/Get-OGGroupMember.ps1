@@ -17,7 +17,7 @@ Get-OGGroupMember -GroupId 3175b598-0fa0-4002-aebf-bfbf759c94a7
 General notes
 #>
 Function Get-OGGroupMember {
-    
+
     [CmdletBinding()]
     param (
         [Parameter(Mandatory)]$GroupId

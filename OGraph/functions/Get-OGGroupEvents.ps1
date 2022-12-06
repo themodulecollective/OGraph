@@ -20,7 +20,7 @@ Get-OGGroupEvents -GroupId 3fbabd10-7bbc-410d-ba6c-0ba60e863c30
 General notes
 #>
 Function Get-OGGroupEvents {
-    
+
     param (
         [Parameter(Mandatory = $True)]$GroupId,
         [Parameter(Mandatory = $False)]$Filter

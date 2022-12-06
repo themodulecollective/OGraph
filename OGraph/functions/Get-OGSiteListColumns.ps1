@@ -19,7 +19,7 @@ Get-OGSiteListColumns -SiteId b767d342-3712-492a-94dc-504304cb8412 -ListId c1e7d
 General notes
 #>
 Function Get-OGSiteListColumns {
-    
+
     [CmdletBinding()]
     param (
         [Parameter(Mandatory)]$SiteId,

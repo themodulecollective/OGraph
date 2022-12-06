@@ -22,7 +22,7 @@ Remove-OGCalendar -UserPrincipalName jdoe@contoso.org -Id 79aafc35-e805-491c-bf1
 General notes
 #>
 Function Remove-OGCalendar {
-    
+
     [CmdletBinding(DefaultParameterSetName = 'UPN')]
     param (
         [Parameter(Mandatory)]$UserPrincipalName,

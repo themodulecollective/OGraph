@@ -17,8 +17,7 @@ Get-OGNextpage -URI "/v1.0/users"
 .NOTES
 General notes
 #>
-Function Get-OGNextPage
-{
+Function Get-OGNextPage {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $True)][string]$URI,
@@ -30,28 +29,22 @@ Function Get-OGNextPage
         OutputType  = 'PSObject'
         ContentType = 'application/json'
     }
-    switch ($filter)
-    {
-        $true
-        {
+    switch ($filter) {
+        $true {
             $account_params.add('Headers', @{})
             $account_params.Headers.add('ConsistencyLevel', 'eventual')
         }
     }
     $Result = Invoke-GraphRequest @Account_params
-    switch ($null -ne $Result.value)
-    {
-        $true
-        {
+    switch ($null -ne $Result.value) {
+        $true {
             $Result.value
         }
-        $False
-        {
+        $False {
             $Result | Select-Object -ExcludeProperty '@odata.*'
         }
     }
-    if ($result.'@odata.nextlink')
-    {
+    if ($result.'@odata.nextlink') {
         Get-OGNextPage -Uri $result.'@odata.nextlink'
     }
 }

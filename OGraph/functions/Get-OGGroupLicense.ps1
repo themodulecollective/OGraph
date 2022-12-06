@@ -17,7 +17,7 @@ Get-OGGroupLicense -GroupId f6557fc2-d4a5-4266-8f4c-2bdcd0cd9a2d
 General notes
 #>
 Function Get-OGGroupLicense {
-    
+
     [CmdletBinding()]
     param (
         [Parameter(Mandatory)]$GroupId

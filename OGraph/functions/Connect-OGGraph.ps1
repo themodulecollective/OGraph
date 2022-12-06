@@ -31,7 +31,6 @@ Connect-OGGraph -ApplicationID f3857fc2-d4a5-1427-8f4c-2bdcd0cd9a2d -TenantID 27
 General notes
 #>
 Function Connect-OGGraph {
-    
     [CmdletBinding(DefaultParameterSetName = 'Online')]
     param (
         [Parameter(Mandatory,

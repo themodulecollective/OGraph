@@ -28,7 +28,7 @@ Function Add-OGGroupMember {
     param (
         [Parameter(Mandatory,
             ParameterSetName = 'MID')]
-        [Parameter(Mandatory, 
+        [Parameter(Mandatory,
             ParameterSetName = 'UPN')]
         $GroupId,
         [Parameter(Mandatory,

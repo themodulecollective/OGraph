@@ -18,7 +18,7 @@ Set-OGGraphVersion -Beta
 General notes
 #>
 Function Set-OGGraphVersion {
-    
+
     [CmdletBinding(DefaultParameterSetName = 'v1')]
     param (
         [Parameter(Mandatory = $false,

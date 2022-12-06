@@ -20,7 +20,6 @@ Get-OGCalendar -UserPrincipalName jdoe@contoso.com
 General notes
 #>
 Function Get-OGCalendar {
-    
     [CmdletBinding()]
     param (
         [Parameter(Mandatory)]$UserPrincipalName,

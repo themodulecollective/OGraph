@@ -16,7 +16,7 @@ Get-OGSiteList -SiteId b767d342-3712-492a-94dc-504304cb8412
 General notes
 #>
 Function Get-OGSiteList {
-    
+
     [CmdletBinding()]
     param (
         [Parameter(Mandatory)]$SiteId

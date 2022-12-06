@@ -32,7 +32,7 @@ Set-OGUser -UserPrincipalName jdoe@contoso.com -accountEnabled $false
 General notes
 #>
 Function Set-OGUser {
-    
+
     [CmdletBinding()]
     Param(
         [Parameter(Mandatory)]$UserPrincipalName,

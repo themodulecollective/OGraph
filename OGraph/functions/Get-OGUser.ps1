@@ -25,7 +25,7 @@ Get-OGUser -UserPrincipalName test@testaccount.onmicrosoft.com
 General notes
 #>
 Function Get-OGUser {
-    
+
     [CmdletBinding(DefaultParameterSetName = 'UPN')]
     param (
         [Parameter(ParameterSetName = 'UPN')]$UserPrincipalName,

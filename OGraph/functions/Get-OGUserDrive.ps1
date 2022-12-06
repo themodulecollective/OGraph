@@ -15,7 +15,7 @@ Get-OGUserDrive -userprincipalname test.user@domain.com
 General notes
 #>
 Function Get-OGUserDrive {
-    
+
     [CmdletBinding()]
     param (
         [Parameter(Mandatory)]$UserPrincipalName

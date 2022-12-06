@@ -18,7 +18,9 @@ function Get-OGReadableSku {
     $temp = Get-PSDrive -Name "Temp"
     $joinPath = Join-Path -Path $temp.Root -ChildPath "OGReadableSku.csv"
     try { Invoke-WebRequest -Uri $url -OutFile $joinPath }
-    catch {}
+    catch {
+        Out-Null
+    }
     if (test-path -Path $joinPath) {
         $output = Import-Csv -Path $joinPath
         Remove-Item -Path $joinPath

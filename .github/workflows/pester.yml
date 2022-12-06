@@ -1,0 +1,22 @@
+name: Main GitHub Actions
+run-name: ${{ github.actor }} is using GitHub Actions 🚀
+on: [push]
+jobs:
+  lint-with-PSScriptAnalyzer:
+    name: Install and run PSScriptAnalyzer
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Pester and PSScriptAnalyzer module
+        shell: pwsh
+        run: |
+          Set-PSRepository PSGallery -InstallationPolicy Trusted
+          Install-Module -Name Pester -RequiredVersion 4.10.0 -ErrorAction Stop
+          Install-Module PSScriptAnalyzer -ErrorAction Stop
+      - name: Lint with Pester
+        shell: pwsh
+        run: |
+          Invoke-Pester Help.Tests.ps1 -Passthru
+          Invoke-Pester Module.Tests.ps1 -Passthru
+          Invoke-Pester Pester.Tests.ps1 -Passthru
+          Invoke-Pester ScriptAnalyzer.Tests.ps1 -Passthru

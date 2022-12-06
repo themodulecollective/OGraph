@@ -10,12 +10,12 @@ Permissions: https://learn.microsoft.com/en-us/graph/api/user-list-licensedetail
 Parameter description
 
 .EXAMPLE
-Get-OGUserSkus -UserPrincipalName jdoe@contoso.com
+Get-OGUserSku -UserPrincipalName jdoe@contoso.com
 
 .NOTES
 General notes
 #>
-Function Get-OGUserSkus {
+Function Get-OGUserSku {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory)]$UserPrincipalName

@@ -1,0 +1,18 @@
+name: Publish PowerShell Module
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  publish-to-gallery:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build and publish
+        env:
+          NUGET_KEY: ${{ secrets.BENPULIDOPSGALLERY }}
+        shell: pwsh
+        run: |
+          ./build.ps1 -Path /home/runner/work/OGraph/OGraph
+          Publish-Module -Path /home/runner/work/OGraph/OGraph -NuGetApiKey $env:BENPULIDOPSGALLERY -Verbose

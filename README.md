@@ -1,8 +1,5 @@
-# Creating an AzureAD application
-
-In order to use endpoints that require application-only permission or to restrict application permission scope within your tenant, you may want to create a custom AzureAD application. Follow these high-level steps to create one:
-1. Navigate to y# OGraph
-### The Other Graph Module
+# OGraph
+## The Other Graph Module
 PowerShell functions for administration of Microsoft 365 services using Graph endpoints.
 
 # Intro

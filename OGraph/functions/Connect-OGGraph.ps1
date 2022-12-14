@@ -20,6 +20,9 @@ Parameter description
 .PARAMETER Online
 Parameter description
 
+.PARAMETER Scope
+Parameter description
+
 .PARAMETER AccessToken
 Parameter description
 
@@ -52,6 +55,8 @@ Function Connect-OGGraph {
         [Parameter(Mandatory,
             Parametersetname = 'Online')]
         [Switch]$Online,
+        [Parameter(Parametersetname = 'Online')]
+        [array]$Scope,
         [Parameter(Mandatory,
             Parametersetname = 'Token')]
         $AccessToken
@@ -78,7 +83,12 @@ Function Connect-OGGraph {
             Connect-MGGraph @splat
         }
         'Online' {
-            Connect-MgGraph
+            if ($null -ne $scope) {
+                Connect-MgGraph -Scopes $scope
+            }
+            else {
+                Connect-MgGraph
+            }
         }
         'Token' {
             Connect-MgGraph -AccessToken $AccessToken

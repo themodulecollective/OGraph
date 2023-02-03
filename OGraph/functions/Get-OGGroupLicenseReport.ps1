@@ -19,33 +19,39 @@ Get-OGGroupLicenseReport -GroupId f6557fc2-d4a5-4266-8f4c-2bdcd0cd9a2d
 .NOTES
 General notes
 #>
-Function Get-OGGroupLicenseReport {
+Function Get-OGGroupLicenseReport
+{
 
     [CmdletBinding(DefaultParameterSetName = 'Single')]
     param (
         [Parameter(Mandatory, ParameterSetName = 'Single')]$GroupId,
         [Parameter(Mandatory, ParameterSetName = 'All')][switch]$All
     )
-    switch ($PSCmdlet.ParameterSetName) {
+    switch ($PSCmdlet.ParameterSetName)
+    {
 
-        'All' {
+        'All'
+        {
             $groups = Get-OGGroup -all -property assignedLicenses | Where-Object assignedLicenses -NE $null
             $groups.foreach({ Get-OGGroupLicenseReport -groupid $_.id })
         }
 
-        'Single' {
-            $skus = Get-OGSkus
+        'Single'
+        {
+            $skus = Get-OGSku
             $skusReadable = Get-OGReadableSku
             $group = Get-OGGroup -groupid $groupid
             $ReadableHash = @{}
             $skuHash = @{}
             $spHash = @{}
             $spPerSku = @{}
-            foreach ($sR in $skusReadable) {
+            foreach ($sR in $skusReadable)
+            {
                 $ReadableHash[$sR.GUID] = $sR.Product_Display_Name
                 $ReadableHash[$sR.Service_Plan_Id] = $sR.Service_Plans_Included_Friendly_Names
             }
-            foreach ($s in $skus) {
+            foreach ($s in $skus)
+            {
                 $sku = [PSCustomObject]@{
                     type                          = 'Sku'
                     skuDisplayName                = $ReadableHash[$s.skuid]
@@ -63,7 +69,8 @@ Function Get-OGGroupLicenseReport {
                 }
                 $skuHash[$sku.skuId] = $Sku
                 $splans = @($s.servicePlans)
-                foreach ($sp in $splans) {
+                foreach ($sp in $splans)
+                {
                     $servicePlan = [PSCustomObject]@{
                         type                          = 'ServicePlan'
                         skuDisplayName                = $ReadableHash[$s.skuid]

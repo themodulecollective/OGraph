@@ -12,5 +12,5 @@ jobs:
         uses: actions/checkout@v3
       - run: ./Build.ps1
         shell: pwsh
-      - run: Publish-Module -Path ./artifacts -NuGetApiKey ${{ secrets.BENPULIDOPSGALLERY }} -Verbose
+      - run: Publish-Module -Path /home/runner/work/OGraph/OGraph/artifacts -NuGetApiKey ${{ secrets.BENPULIDOPSGALLERY }} -Verbose
         shell: pwsh

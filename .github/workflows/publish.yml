@@ -14,5 +14,5 @@ jobs:
           NUGET_KEY: ${{ secrets.BENPULIDOPSGALLERY }}
         shell: pwsh
         run: |
-          ./build.ps1 -Path /home/runner/work/OGraph/OGraph
-          Publish-Module -Path /home/runner/work/OGraph/OGraph -NuGetApiKey $env:BENPULIDOPSGALLERY -Verbose
+          Build.ps1
+          # Publish-Module -Path /home/runner/work/OGraph/OGraph -NuGetApiKey $env:BENPULIDOPSGALLERY -Verbose

@@ -1,6 +1,9 @@
-name: Main GitHub Actions
+name: Pester Testing
 run-name: ${{ github.actor }} is using GitHub Actions 🚀
-on: [push]
+on:
+  #[push]
+  workflow_dispatch:
+
 jobs:
   lint-with-PSScriptAnalyzer:
     name: Install and run PSScriptAnalyzer

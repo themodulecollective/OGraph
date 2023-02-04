@@ -76,7 +76,13 @@ servicePlanIsEnabled          : False
 
 # Getting Started
 
-First, Import the module using:
+Install the module using:
+
+```
+Install-Module OGraph
+```
+
+Import the module using:
 
 ```
 Import-Module OGraph

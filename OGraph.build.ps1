@@ -88,3 +88,20 @@ Task BuildModuleFiles {
   Copy-Item -Destination $Artifacts -Path $(Join-Path -Path $BuildRoot -ChildPath 'README.md')
   Copy-Item -Destination $Artifacts -Path $(Join-Path -Path $BuildRoot -ChildPath 'ReleaseNotes.md')
 }
+
+Task PublishModule {
+  Try
+  {
+    $PMParams = @{
+      Path        = $Artifacts
+      NuGetApiKey = [System.Environment]::GetEnvironmentVariable('NuGetApiKey')
+      ErrorAction = 'Stop'
+    }
+    Publish-Module @PMParams
+    Write-Information 'Module published to PSGallery'
+  }
+  Catch
+  {
+    throw($_)
+  }
+}

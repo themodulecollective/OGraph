@@ -10,6 +10,6 @@ jobs:
       - name: Build and publish
         run: |
           Get-Variable
-          Get-Location
-          Get-ChildItem
+          Get-ChildItem Env:\
+          Get-ChildItem | Select-Object -ExpandProperty Fullname
         shell: pwsh

@@ -1,0 +1,14 @@
+name: Testing
+
+on:
+  workflow_dispatch:
+jobs:
+  publish-to-gallery:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build and publish
+        run: |
+          Get-Variable
+          Get-Location
+        shell: pwsh

@@ -3,7 +3,7 @@ name: Testing
 on:
   workflow_dispatch:
 jobs:
-  publish-to-gallery:
+  testing:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -11,4 +11,5 @@ jobs:
         run: |
           Get-Variable
           Get-Location
+          Get-ChildItem
         shell: pwsh

@@ -93,7 +93,7 @@ Task PublishModule {
   Try
   {
     $PMParams = @{
-      Path        = $Artifacts
+      Path        = $(Join-Path -Path $BuildRoot -ChildPath 'artifacts')
       NuGetApiKey = [System.Environment]::GetEnvironmentVariable('NuGetApiKey')
       ErrorAction = 'Stop'
     }

@@ -8,11 +8,10 @@ jobs:
   publish-to-gallery:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
       - name: Build and publish
+        uses: actions/checkout@v3
         env:
           NUGET_KEY: ${{ secrets.BENPULIDOPSGALLERY }}
-        shell: pwsh
-        run:
-          ./Build.ps1
-          Publish-Module -Path ./Artifacts -NuGetApiKey $env:BENPULIDOPSGALLERY -Verbose
+          shell: pwsh
+      - run: ./Build.ps1
+      - run: Publish-Module -Path ./Artifacts -NuGetApiKey $env:BENPULIDOPSGALLERY -Verbose

@@ -10,10 +10,7 @@ jobs:
     steps:
       - name: Build and publish
         uses: actions/checkout@v3
-
       - run: ./Build.ps1
         shell: pwsh
-      - run: Publish-Module -Path ./Artifacts -NuGetApiKey $env:BENPULIDOPSGALLERY -Verbose
+      - run: Publish-Module -Path ./Artifacts -NuGetApiKey ${{ secrets.BENPULIDOPSGALLERY }} -Verbose
         shell: pwsh
-        env:
-          NUGET_KEY: ${{ secrets.BENPULIDOPSGALLERY }}

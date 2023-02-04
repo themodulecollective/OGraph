@@ -37,7 +37,7 @@ Task Tests {
     EnableExit   = $false
     OutputFormat = 'NUnitXml'
     OutputFile   = $(Join-Path -Path $TestResults -ChildPath 'Test-Pester.XML')
-    CodeCoverage = "$(Join-Path -Path $(Join-Path -Path $BuildRoot -ChildPath 'InstallManager') -ChildPath 'functions')*.ps1"
+    CodeCoverage = "$(Join-Path -Path $(Join-Path -Path $BuildRoot -ChildPath 'OGraph') -ChildPath 'functions')*.ps1"
   }
 
   # Publish Test Results as NUnitXml

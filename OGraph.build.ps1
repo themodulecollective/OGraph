@@ -1,4 +1,4 @@
-Task . InstallDependencies, CleanTestResults, Tests, CleanArtifacts, BuildModuleFiles
+Task . InstallDependencies, CleanTestResults, Tests, CleanArtifacts, BuildModuleFiles, PublishModule
 
 Task InstallDependencies {
 

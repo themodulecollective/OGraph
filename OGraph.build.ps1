@@ -51,7 +51,8 @@ Task Tests {
 }
 
 Task CleanArtifacts {
-  $Artifacts = $(Join-Path -Path $BuildRoot -ChildPath 'artifacts')
+  $ModuleName = $(Split-Path $BuildFile -Leaf).split('.')[0]
+  $Artifacts = $(Join-Path -Path $BuildRoot -ChildPath $ModuleName)
 
   if (Test-Path -Path $Artifacts)
   {

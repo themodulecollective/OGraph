@@ -63,9 +63,10 @@ Task CleanArtifacts {
 
 Task BuildModuleFiles {
 
-  $Artifacts = $(Join-Path -Path $BuildRoot -ChildPath 'artifacts')
-  Write-Information -MessageData "Artifacts Path = $Artifacts" -InformationAction Continue
+
   $ModuleName = $(Split-Path $BuildFile -Leaf).split('.')[0]
+  $Artifacts = $(Join-Path -Path $BuildRoot -ChildPath $ModuleName)
+  Write-Information -MessageData "Artifacts Path = $Artifacts" -InformationAction Continue
   Write-Information -MessageData "ModuleName = $ModuleName" -InformationAction Continue
   $ModuleManifestFileName = $ModuleName + '.psd1'
   $ModuleFolder = $(Join-Path -Path $BuildRoot -ChildPath $ModuleName)
@@ -92,8 +93,10 @@ Task BuildModuleFiles {
 Task PublishModule {
   Try
   {
+    $ModuleName = $(Split-Path $BuildFile -Leaf).split('.')[0]
+    $Artifacts = $(Join-Path -Path $BuildRoot -ChildPath $ModuleName)
     $PMParams = @{
-      Path        = $(Join-Path -Path $BuildRoot -ChildPath 'artifacts')
+      Path        = $Artifacts
       NuGetApiKey = [System.Environment]::GetEnvironmentVariable('NuGetApiKey')
       ErrorAction = 'Stop'
     }

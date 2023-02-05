@@ -27,7 +27,7 @@ function Get-OGReadableSku
             {
                 $true
                 {
-
+                    # add a refresh option here (rework flow or create separate function for storing)
                 }
                 $False
                 {

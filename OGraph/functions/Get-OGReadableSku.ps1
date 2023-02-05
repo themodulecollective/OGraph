@@ -5,8 +5,13 @@ Provide human readable description to M365 Service Plans by downloading the csv 
 .DESCRIPTION
 Provide human readable description to M365 Service Plans by downloading the csv in the Microsoft Docs reference. If the CSV fails to download a local copy will be used for the output. If the download is successful, the local copy will be updated.
 
+.PARAMETER StoreCSV
+Stores the readable sku csv from Microsoft in the Module folder.
+
 .EXAMPLE
 Get-OGReadableSku
+
+
 
 .NOTES
 

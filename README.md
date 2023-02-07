@@ -3,11 +3,9 @@
 PowerShell functions for administration of Microsoft 365 services using Graph endpoints.
 
 # Intro
-As a system administrator, I became increasingly frustrated with the reality that the Azure AD and MSOL Powershell modules were going away, but the Microsoft.Graph module was far from ready to replace even some basic functionalities without hassle. After looking into the Graph web API and its outputs, I realized in many cases it was potentially simpler to wrap a graph web API call in a function than it was to use the available MG function for whatever task I was working on at the time.
+With the deprecation of the Azure AD and MSOL Powershell modules some basic functionaly is not readily available using the Microsoft.Graph modules which was included in these legacy modules. This module is part of the ongoing process of providing solutions to common tasks within Graph or adding functionality that doesn't currently exist in Microsoft.Graph Powershell SDK. It's intended as a companion module to Microsoft.Graph and in many ways relies on it.
 
-This module is the ongoing process of providing simpler solutions to common tasks within Graph or adding functionality that doesn't currently exist in Microsoft.Graph Powershell SDK. It's intended as a companion module to Microsoft.Graph and in many ways relies on it.
-
-For example, Invoke-MgGraphRequest offers a better experience than Invoke-Restmethod when making the API call. And Connect-MGgraph is great if you already have a token or can use your credentials to authenticate. But I created Connect-OGGraph to allow users to get a new token from an Azure AD application using your access secret or certificate thumbprint and then run the Get-MgGraph function with that token. The example below gets a new token from the application and authenticates to Graph within the same function.
+For example, Invoke-MgGraphRequest offers a better experience than Invoke-Restmethod when making the API call. And Connect-MGgraph is great if you already have a token or can use your credentials to authenticate. Connect-OGGraph allows a users to get a new token from an Azure AD application using your access secret or certificate thumbprint and then run the Get-MgGraph function with that token. The example below gets a new token from the application and authenticates to Graph within the same function.
 
 ```
 Connect-OGGraph -ApplicationID f3857fc2-d4a5-1427-8f4c-2bdcd0cd9a2d -TenantID 27f1409e-4f28-4115-8ef5-71058ab01821 -AccessSecret Rb4324~JBiAJclWeG1W239CPgKHlChi9l0423jjdg~

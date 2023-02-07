@@ -11,7 +11,7 @@ Parameter description
 .PARAMETER TenantId
 Parameter description
 
-.PARAMETER AccessSecret
+.PARAMETER ClientSecret
 Parameter description
 
 .PARAMETER CertificateThumbprint
@@ -33,7 +33,8 @@ Connect-OGGraph -ApplicationID f3857fc2-d4a5-1427-8f4c-2bdcd0cd9a2d -TenantID 27
 .NOTES
 General notes
 #>
-Function Connect-OGGraph {
+Function Connect-OGGraph
+{
     [CmdletBinding(DefaultParameterSetName = 'Online')]
     param (
         [Parameter(Mandatory,
@@ -48,7 +49,7 @@ Function Connect-OGGraph {
         $TenantId,
         [Parameter(Mandatory,
             Parametersetname = 'Secret')]
-        $AccessSecret,
+        $ClientSecret,
         [Parameter(Mandatory,
             Parametersetname = 'Cert')]
         $CertificateThumbprint,
@@ -62,35 +63,42 @@ Function Connect-OGGraph {
         $AccessToken
 
     )
-    switch ($PSCmdlet.ParameterSetName) {
-        'Secret' {
+    switch ($PSCmdlet.ParameterSetName)
+    {
+        'Secret'
+        {
             $Body = @{
                 Grant_Type    = 'client_credentials'
                 Scope         = 'https://graph.microsoft.com/.default'
                 client_Id     = $ApplicationID
-                Client_Secret = $AccessSecret
+                Client_Secret = $ClientSecret
             }
             $ConnectGraph = Invoke-RestMethod -Uri "https://login.microsoftonline.com/$TenantId/oauth2/v2.0/token" -Method POST -Body $Body
             $script:GraphAPIKey = $ConnectGraph.access_token
             Connect-MgGraph -AccessToken $GraphAPIKey
         }
-        'Cert' {
+        'Cert'
+        {
             $splat = @{
                 ClientID              = $ApplicationID
                 TenantId              = $TenantId
                 CertificateThumbprint = $CertificateThumbprint
             }
-            Connect-MGGraph @splat
+            Connect-MgGraph @splat
         }
-        'Online' {
-            if ($null -ne $scope) {
+        'Online'
+        {
+            if ($null -ne $scope)
+            {
                 Connect-MgGraph -Scopes $scope
             }
-            else {
+            else
+            {
                 Connect-MgGraph
             }
         }
-        'Token' {
+        'Token'
+        {
             Connect-MgGraph -AccessToken $AccessToken
         }
     }

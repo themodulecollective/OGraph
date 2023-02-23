@@ -7,16 +7,16 @@ Get group using an Object ID, by searching for a displayname, or getting all gro
 Permissions: https://learn.microsoft.com/en-us/graph/api/group-list?view=graph-rest-1.0&tabs=http
 
 .PARAMETER GroupId
-Parameter description
+GroupID (guid) for the group
 
 .PARAMETER SearchDisplayName
-Parameter description
+Get the Group(s) by DisplayName search
 
 .PARAMETER All
-Parameter description
+Get all Groups from the Microsoft Tenant
 
 .PARAMETER Property
-Parameter description
+Include the specified group property(ies) in the output
 
 .EXAMPLE
 Get a group by Object ID
@@ -25,29 +25,41 @@ Get-OGGroup -GroupId 3175b598-0fa0-4002-aebf-bfbf759c94a7
 .NOTES
 General notes
 #>
-Function Get-OGGroup {
+Function Get-OGGroup
+{
     [CmdletBinding(DefaultParameterSetName = 'OID')]
     param (
+
         [Parameter(ParameterSetName = 'OID')]
-        $GroupId,
-        [Parameter(ParameterSetName = 'Search')]$SearchDisplayName,
+        $GroupId
+        ,
+        [Parameter(ParameterSetName = 'Search')]
+        $SearchDisplayName
+        ,
         [Parameter(ParameterSetName = 'All')]
-        [Switch]$All,
+        [Switch]$All
+        ,
         [Parameter()]
         [string[]]$Property
+
     )
-    $includeAttributes = 'classification', 'createdByAppId', 'createdDateTime', 'deletedDateTime', 'description', 'displayName', 'expirationDateTime', 'groupTypes', 'id', 'infoCatalogs', 'isAssignableToRole', 'isManagementRestricted', 'mail', 'mailEnabled', 'mailNickname', 'membershipRule', 'membershipRuleProcessingState', 'onPremisesDomainName', 'onPremisesLastSyncDateTime', 'onPremisesNetBiosName', 'onPremisesProvisioningErrors', 'onPremisesSamAccountName', 'onPremisesSecurityIdentifier', 'onPremisesSyncEnabled', 'organizationId', 'preferredDataLocation', 'preferredLanguage', 'proxyAddresses', 'renewedDateTime', 'resourceBehaviorOptions', 'resourceProvisioningOptions', 'securityEnabled', 'securityIdentifier', 'theme', 'visibility', 'writebackConfiguration'
-    $IncludeAttributeString = $($includeAttributes; $property) -join ','
-    switch ($PSCmdlet.ParameterSetName) {
-        'OID' {
+    $IncludeAttributes =[System.Collections.Generic.List[string]]@('classification', 'createdByAppId', 'createdDateTime', 'deletedDateTime', 'description', 'displayName', 'expirationDateTime', 'groupTypes', 'id', 'infoCatalogs', 'isAssignableToRole', 'isManagementRestricted', 'mail', 'mailEnabled', 'mailNickname', 'membershipRule', 'membershipRuleProcessingState', 'onPremisesDomainName', 'onPremisesLastSyncDateTime', 'onPremisesNetBiosName', 'onPremisesProvisioningErrors', 'onPremisesSamAccountName', 'onPremisesSecurityIdentifier', 'onPremisesSyncEnabled', 'organizationId', 'preferredDataLocation', 'preferredLanguage', 'proxyAddresses', 'renewedDateTime', 'resourceBehaviorOptions', 'resourceProvisioningOptions', 'securityEnabled', 'securityIdentifier', 'theme', 'visibility', 'writebackConfiguration')
+    $Property.foreach({$IncludeAttributes.Add($_)})
+    $IncludeAttributeString = $IncludeAttributes -join ','
+    switch ($PSCmdlet.ParameterSetName)
+    {
+        'OID'
+        {
             $URI = "/$GraphVersion/groups/$($GroupId)?`$select=$($IncludeAttributeString)"
             get-ognextpage -uri $uri
         }
-        'Search' {
-            $URI = "/$GraphVersion/groups?`$select=$($IncludeAttributeString)`$search=`"displayName:$SearchDisplayName`""
+        'Search'
+        {
+            $URI = '/' + $GraphVersion + '/groups?$search="displayName:' + $SearchDisplayName + '"&$select=' + $IncludeAttributeString
             Get-OGNextPage -uri $URI -Filter
         }
-        'All' {
+        'All'
+        {
             $URI = "/$GraphVersion/groups?`$select=$($IncludeAttributeString)"
             Get-OGNextPage -Uri $URI
         }

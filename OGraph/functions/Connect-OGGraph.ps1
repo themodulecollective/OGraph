@@ -6,25 +6,25 @@ Get API Token from Azure AD app using Access Secret or Certificate Thumprint, th
 This function allows easy Authentication to Azure AD application authentication tokens or User Credentials. To get a Azure AD application token, provide the tenant ID, Application ID, and either an access secret or certificate thumbprint. The token with automatically authenticate the session after a valid token is acquired or online credentials are entered. If you have an existing token, paste it into accesstoken.
 
 .PARAMETER ApplicationID
-Parameter description
+Identifier for the Application Registration to use for connection to the Microsoft Tenant
 
 .PARAMETER TenantId
-Parameter description
+Identifier for the Microsoft Tenant
 
 .PARAMETER ClientSecret
-Parameter description
+Client Secret for the Application Registration to be used for client authentication for connection to the Microsoft Tenant
 
 .PARAMETER CertificateThumbprint
-Parameter description
+Certificat thumbprint of the certificate to be used for client authentiaction for connection to the Microsoft Tenant
 
-.PARAMETER Online
-Parameter description
+.PARAMETER UseDeviceAuthentication
+Use device code flow
 
 .PARAMETER Scope
-Parameter description
+Specify the Microsoft Graph scope(s) to include in the connection context.  User must have appropriate permissions and/or be able to consent to the permissions.
 
 .PARAMETER AccessToken
-Parameter description
+Specify the pre-obtained access code to use for the connection to the Microsoft Tenant
 
 .EXAMPLE
 Authenticate to graph with application access secret:
@@ -35,33 +35,32 @@ General notes
 #>
 Function Connect-OGGraph
 {
-    [CmdletBinding(DefaultParameterSetName = 'Online')]
+    [CmdletBinding(DefaultParameterSetName = 'Interactive')]
     param (
-        [Parameter(Mandatory,
-            Parametersetname = 'Secret')]
-        [Parameter(Mandatory,
-            Parametersetname = 'Cert')]
-        $ApplicationID,
-        [Parameter(Mandatory,
-            Parametersetname = 'Secret')]
-        [Parameter(Mandatory,
-            Parametersetname = 'Cert')]
-        $TenantId,
-        [Parameter(Mandatory,
-            Parametersetname = 'Secret')]
-        $ClientSecret,
-        [Parameter(Mandatory,
-            Parametersetname = 'Cert')]
-        $CertificateThumbprint,
-        [Parameter(Mandatory,
-            Parametersetname = 'Online')]
-        [Switch]$Online,
-        [Parameter(Parametersetname = 'Online')]
-        [array]$Scope,
-        [Parameter(Mandatory,
-            Parametersetname = 'Token')]
-        $AccessToken
 
+        [Parameter(Mandatory,Parametersetname = 'Secret')]
+        [Parameter(Mandatory,Parametersetname = 'Cert')]
+        $ApplicationID
+        ,
+        [Parameter(Mandatory,Parametersetname = 'Secret')]
+        [Parameter(Mandatory,Parametersetname = 'Cert')]
+        $TenantId
+        ,
+        [Parameter(Mandatory,Parametersetname = 'Secret')]
+        $ClientSecret
+        ,
+        [Parameter(Mandatory,Parametersetname = 'Cert')]
+        $CertificateThumbprint
+        ,
+        [Parameter(Parametersetname = 'Interactive')]
+        [Parameter(Parametersetname = 'DeviceAuth')]
+        [string[]]$Scope
+        ,
+        [Parameter(Mandatory,Parametersetname = 'Token')]
+        $AccessToken
+        ,
+        [Parameter(Mandatory,Parametersetname = 'DeviceAuth')]
+        [switch]$UseDeviceAuthentication
     )
     switch ($PSCmdlet.ParameterSetName)
     {
@@ -86,16 +85,34 @@ Function Connect-OGGraph
             }
             Connect-MgGraph @splat
         }
-        'Online'
+        'Interactive'
         {
-            if ($null -ne $scope)
+            switch ($scope.count -ge 1)
             {
-                Connect-MgGraph -Scopes $scope
+                $true
+                {
+                    Connect-MgGraph -UseDeviceAuthentication -Scopes $Scope
+                }
+                $false
+                {
+                    Connect-MgGraph
+                }
             }
-            else
+        }
+        'DeviceAuth'
+        {
+            switch ($scope.count -ge 1)
             {
-                Connect-MgGraph
+                $true
+                {
+                    Connect-MgGraph -UseDeviceAuthentication -Scopes $Scope
+                }
+                $false
+                {
+                    Connect-MgGraph -UseDeviceAuthentication
+                }
             }
+
         }
         'Token'
         {

@@ -70,10 +70,9 @@ Function Get-OGGroupLicenseReport
                     type                          = 'Sku'
                     skuDisplayName                = $ReadableHash[$s.skuid]
                     skuName                       = $s.skuPartNumber
-                    #prepaidUnits                  = $s.prepaidUnits
-                    prepaidUnitsEnabled           = $s.prepaidUnits.Enabled
+                    prepaidUnitsEnabled           = $s.prepaidUnitsEnabled
                     consumedUnits                 = $s.consumedUnits
-                    nonConsumedUnits              = $($s.prepaidUnits.Enabled - $s.consumedUnits)
+                    nonConsumedUnits              = $s.nonConsumedUnits
                     skuAppliesTo                  = $s.appliesTo
                     skuId                         = $s.skuId
                     servicePlanName               = $null
@@ -113,7 +112,6 @@ Function Get-OGGroupLicenseReport
                 'skuDisplayName'
                 'skuName'
                 'skuId'
-                'skuPrepaidUnits'
                 'skuPrepaidUnitsEnabled'
                 'skuConsumedUnits'
                 'skuNonConsumedUnits'

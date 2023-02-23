@@ -27,30 +27,30 @@ Function Get-OGSku
         [ValidateLength(1,1)]
         [string]$ServicePlanDelimiter = ';'
     )
+
     $Uri = "/$GraphVersion/subscribedSkus"
+    $ReadableHash = @{}
+    $rawSku = get-ognextpage -uri $Uri
     switch ($IncludeDisplayName)
     {
         $true
         {
-            $rawSku = get-ognextpage -uri $Uri
-            $ReadableHash = @{}
             $skusReadable = Get-OGReadableSku
             foreach ($sR in $skusReadable)
             {
                 $ReadableHash[$sR.GUID] = $sR.Product_Display_Name
                 $ReadableHash[$sR.Service_Plan_Id] = $sR.Service_Plans_Included_Friendly_Names
             }
-            foreach ($s in $rawSku)
-            {
-                $s | Select-Object -Property *,
-                @{n='skuDisplayName';e = {$ReadableHash[$s.skuid]}},
-                @{n='servicePlanNames';e= {$s.ServicePlans.foreach({$_.ServicePlanName}) -join $ServicePlanDelimiter}},
-                @{n='servicePlanDisplayNames'; e= {$s.ServicePlans.foreach({$ReadableHash[$_.ServicePlanID]}) -join $ServicePlanDelimiter}}
-            }
         }
-        $false
-        {
-            get-ognextpage -uri $Uri
-        }
+    }
+
+    foreach ($s in $rawSku)
+    {
+        $s | Select-Object -Property *,
+        @{n='prepaidUnitsEnabled';e= {$_.prepaidUnits.enabled}},
+        @{n='nonConsumedUnits';e= {$($s.prepaidUnits.Enabled - $s.consumedUnits)}},
+        @{n='skuDisplayName';e = {$ReadableHash[$s.skuid]}},
+        @{n='servicePlanNames';e= {$s.ServicePlans.foreach({$_.ServicePlanName}) -join $ServicePlanDelimiter}},
+        @{n='servicePlanDisplayNames'; e= {$s.ServicePlans.foreach({$ReadableHash[$_.ServicePlanID]}).where({$null -ne $_}) -join $ServicePlanDelimiter}}
     }
 }

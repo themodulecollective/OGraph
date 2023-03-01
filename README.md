@@ -7,7 +7,7 @@ With the deprecation of the Azure AD and MSOL Powershell modules some basic func
 
 For example, Invoke-MgGraphRequest offers a better experience than Invoke-Restmethod when making the API call. And Connect-MGgraph is great if you already have a token or can use your credentials to authenticate. Connect-OGGraph allows a users to get a new token from an Azure AD application using your access secret or certificate thumbprint and then run the Get-MgGraph function with that token. The example below gets a new token from the application and authenticates to Graph within the same function.
 
-```
+``` Powershell
 Connect-OGGraph -ApplicationID f3857fc2-d4a5-1427-8f4c-2bdcd0cd9a2d -TenantID 27f1409e-4f28-4115-8ef5-71058ab01821 -AccessSecret Rb4324~JBiAJclWeG1W239CPgKHlChi9l0423jjdg~
 
 Welcome To Microsoft Graph!
@@ -15,8 +15,8 @@ Welcome To Microsoft Graph!
 
 Another example of added functionality is Get-GroupLicenseReport. Currently, there is no clean method to programmatically get a human-readable list of Skus and enabled service plans from a licensing group. This function provides that report by getting Skus used in a tenant and comparing them to the guids provided by the Groups assignedLicenses endpoint.
 
-```
-Get-OGGroupLicenseReport -GroupId a215dd48-4e3a-46bf-bb63-8f93a9fcaecc
+``` Powershell
+Get-OGGroupLicenseReport -GroupId a215dd48-4e3a-46bf-bb63-8f93a9fcaecc -IncludeDisplayName
 
 groupDisplayName              : LicensingTest
 type                          : ServicePlanPerSku
@@ -76,31 +76,31 @@ servicePlanIsEnabled          : False
 
 Install the module using:
 
-```
+``` Powershell
 Install-Module OGraph
 ```
 
 Import the module using:
 
-```
+``` Powershell
 Import-Module OGraph
 ```
 
 Next get connected. If you are using a Azure AD application for your graph permission, you can use a Certificate Thumbprint or Access Secret to generate a new token and authenticate:
 
-```
+``` Powershell
 Connect-OGGraph -ApplicationID [App ID] -TenantID [Tenant ID] -AccessSecret [Access secret]
 ```
 
 To use your Azure AD credentials:
 
-```
+``` Powershell
 Connect-OGGraph -Online
 ```
 
 This module uses Graph API v1.0 by default. Run this command to switch between versions:
 
-```
+``` Powershell
 Set-OGVersion -beta
 ```
 
@@ -139,7 +139,7 @@ Now you have an application with permission granted. Only one other step is need
 
 Now you have done the minimum requirements to create an app registration with permissions in Graph and get an access secret. You can successfully run:
 
-```
+``` Powershell
 Connect-OGGraph -TenantId [Tenant ID Guid] -ApplicationID [Application ID Guid] -AccessSecret [Access Secret Value]
-Get-OGGroupLicenseReport -All
+Get-OGGroupLicenseReport -All -IncludeDisplayName
 ```

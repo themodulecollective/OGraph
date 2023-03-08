@@ -89,6 +89,7 @@
         'Get-OGUserDrive'
         'Get-OGUserEvent'
         'Get-OGUserSku'
+        'New-OGSiteListItem'
         'Remove-OGGroupMember'
         'Remove-OGListItem'
         'Remove-OGTeamsEventInfo'

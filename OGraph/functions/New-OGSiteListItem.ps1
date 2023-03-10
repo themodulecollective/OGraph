@@ -3,10 +3,15 @@
  Add new item to a SharePoint list
 
 .DESCRIPTION
-Long description
+Create a SharePoint Online list item by providing the SharePoint site ID, the List ID, and the values of the fields to be added in a hash table.
 
+Permissions: https://learn.microsoft.com/en-us/graph/api/listitem-create?view=graph-rest-1.0&tabs=http
 .EXAMPLE
-An example
+$fields = @{
+    field_1 = "Sample String"
+}
+New-OGSiteListItem -SiteId 26776db6-ffd1-4e58-a6bf-851d6302733a -ListId 26f11389-ffd1-4e24-a7h1-85af93422733a -Fields $fields
+
 
 .NOTES
 General notes

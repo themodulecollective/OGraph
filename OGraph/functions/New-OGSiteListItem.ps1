@@ -28,6 +28,5 @@ function New-OGSiteListItem {
         Method      = 'POST'
         ContentType = 'application/json'
     }
-    $account_params.body
     Invoke-MgGraphRequest @Account_params
 }

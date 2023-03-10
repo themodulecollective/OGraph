@@ -28,6 +28,7 @@ $Script:ModuleFiles = @(
     $(Join-Path -Path $functions -ChildPath 'Remove-OGGroupMember.ps1')
     $(Join-Path -Path $functions -ChildPath 'Set-OGUser.ps1')
     $(Join-Path -Path $functions -ChildPath 'Set-OGGraphVersion.ps1')
+    $(Join-Path -Path $functions -ChildPath 'Update-OGSiteListItem.ps1')
     # Finalize / Run any Module Functions defined above
     $(Join-Path -Path $Scripts -ChildPath 'RunFunctions.ps1')
 )

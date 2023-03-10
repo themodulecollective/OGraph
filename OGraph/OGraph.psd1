@@ -72,6 +72,7 @@
     FunctionsToExport    = @(
         'Add-OGGroupMember'
         'Connect-OGGraph'
+        'Delete-OGSiteListItem'
         'Get-OGCalendar'
         'Get-OGGroup'
         'Get-OGGroupEvent'
@@ -91,8 +92,7 @@
         'Get-OGUserSku'
         'New-OGSiteListItem'
         'Remove-OGGroupMember'
-        'Remove-OGListItem'
-        'Remove-OGTeamsEventInfo'
+        'Remove-OGSiteListItem'
         'Set-OGUser'
         'Set-OGGraphVersion'
         'Update-OGSiteListItem'

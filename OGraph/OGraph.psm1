@@ -26,6 +26,7 @@ $Script:ModuleFiles = @(
     $(Join-Path -Path $functions -ChildPath 'Get-OGUserSku.ps1')
     $(Join-Path -Path $functions -ChildPath 'New-OGSiteListItem.ps1')
     $(Join-Path -Path $functions -ChildPath 'Remove-OGGroupMember.ps1')
+    $(Join-Path -Path $functions -ChildPath 'Remove-OGSiteListItem.ps1')
     $(Join-Path -Path $functions -ChildPath 'Set-OGUser.ps1')
     $(Join-Path -Path $functions -ChildPath 'Set-OGGraphVersion.ps1')
     $(Join-Path -Path $functions -ChildPath 'Update-OGSiteListItem.ps1')

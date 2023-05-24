@@ -85,7 +85,7 @@
         #'Get-OGNextPage'
         'Get-OGReadableSku'
         'Get-OGSku'
-        #'Get-OGUser'
+        'Get-OGUser'
         #'Get-OGUserDrive'
         #'Get-OGUserEvent'
         'Get-OGUserSku'

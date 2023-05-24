@@ -7,9 +7,6 @@ Gets the license skus applied by a group and any disabled service plans of those
 
 Permissions: https://learn.microsoft.com/en-us/graph/api/group-list?view=graph-rest-1.0&tabs=http
 
-.PARAMETER GroupId
-GroupID (guid) for the group
-
 .EXAMPLE
 Get-OGGroupLicense -GroupId f6557fc2-d4a5-4266-8f4c-2bdcd0cd9a2d
 
@@ -20,14 +17,18 @@ Function Get-OGGroupLicense
 {
     [CmdletBinding()]
     param (
+        # GroupID (guid) for the Group
         [Parameter(Mandatory)]$GroupId
         ,
+        # Specify if you want to include the SKU Display Name (Friendly Name) in the output object
+        [parameter()]
         [switch]$IncludeDisplayName
 <#         ,
         [parameter()]
         [ValidateLength(1,1)]
         [string]$ServicePlanDelimiter = ';' #>
         ,
+        # Specify if you want to pass through the GroupID to the output object as an attribute
         [parameter()]
         [switch]$PassthruGroupID
     )

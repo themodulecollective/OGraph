@@ -6,8 +6,6 @@ Get Azure AD skus for individual user
 Get Azure AD skus for individual user
 
 Permissions: https://learn.microsoft.com/en-us/graph/api/user-list-licensedetails?view=graph-rest-1.0&tabs=http
-.PARAMETER UserPrincipalName
-Parameter description
 
 .EXAMPLE
 Get-OGUserSku -UserPrincipalName jdoe@contoso.com
@@ -18,14 +16,19 @@ General notes
 Function Get-OGUserSku {
     [CmdletBinding()]
     param (
+        #Specify the UserPrincipalName for the user
         [Parameter(Mandatory)]$UserPrincipalName
         ,
+        # Specify whether to include the SKU and ServicePlan Display Names (Friendly Names) in the output object(s)
+        [parameter()]
         [switch]$IncludeDisplayName
         ,
+        # Specify the delimeter to use betwen Service Plan items in the output object
         [parameter()]
         [ValidateLength(1,1)]
         [string]$ServicePlanDelimiter = ';'
         ,
+        # Specify whether to pass through the UserPrincipalName to the output object at an attribute of the output
         [parameter()]
         [alias('PassthruUPN')]
         [switch]$PassthruUserPrincipalName

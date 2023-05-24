@@ -21,8 +21,40 @@ Function Get-OGGroupLicense
     [CmdletBinding()]
     param (
         [Parameter(Mandatory)]$GroupId
+        ,
+        [switch]$IncludeDisplayName
+<#         ,
+        [parameter()]
+        [ValidateLength(1,1)]
+        [string]$ServicePlanDelimiter = ';' #>
+        ,
+        [parameter()]
+        [switch]$PassthruGroupID
     )
 
+    $ReadableHash = @{}
+    switch ($IncludeDisplayName)
+    {
+        $true
+        {
+            $skusReadable = Get-OGReadableSku
+            foreach ($sR in $skusReadable)
+            {
+                $ReadableHash[$sR.GUID] = $sR.Product_Display_Name
+                $ReadableHash[$sR.Service_Plan_Id] = $sR.Service_Plans_Included_Friendly_Names
+            }
+        }
+    }
     $URI = "/$GraphVersion/groups/$GroupId/assignedLicenses"
-    Get-OGNextPage -uri $URI
+    $rawSku = @(Get-OGNextPage -uri $Uri)
+    if ($PassthruGroupID) {
+        $rawSku = @($rawSku | Select-Object -Property @{n='GroupID';e={$GroupID}},*)
+    }
+    foreach ($s in $rawSku)
+    {
+        $s | Select-Object -Property *,
+        @{n='skuDisplayName';e = {$ReadableHash[$s.skuid]}}
+        #@{n='servicePlanNames';e= {$s.ServicePlans.foreach({$_.ServicePlanName}) -join $ServicePlanDelimiter}},
+        #@{n='servicePlanDisplayNames'; e= {$s.ServicePlans.foreach({$ReadableHash[$_.ServicePlanID]}).where({$null -ne $_}) -join $ServicePlanDelimiter}}
+    }
 }

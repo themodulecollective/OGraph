@@ -61,9 +61,9 @@ Function Get-OGGroupLicenseReport
             }
             $skus = Get-OGSku
             $group = Get-OGGroup -GroupId $groupid
-            $skuHash = @{}
-            $spHash = @{}
-            $spPerSku = @{}
+            $skuHash = @{} #hashtable to be populated with key SkuID and value SKU detail object
+            $spHash = @{} #hashtable to be populated with key service plan ID and value service plan detail object
+            $spPerSku = @{} #hasthable to be populated with key SkuID and value ServicePlanIDs collection
             foreach ($s in $skus)
             {
                 $sku = [PSCustomObject]@{
@@ -100,7 +100,7 @@ Function Get-OGGroupLicenseReport
                         servicePlanProvisioningStatus = $sp.provisioningStatus
                         servicePlanAppliesTo          = $sp.appliesTo
                     }
-                    $spHash[$servicePlan.servicePlanId] = $servicePlan
+                    $spHash[$servicePlan.servicePlanId + '_' + $sku.skuID] = $servicePlan
                 }
                 $spPerSku[$s.skuid] = $splans.servicePlanId
             }
@@ -125,8 +125,9 @@ Function Get-OGGroupLicenseReport
             )
 
             @($grouplicense.skuid).foreach({
-                    $gsp = @($spPerSku[$_])
-                    $gsp.foreach({ $spHash[$_] })
+                    $gskuid = $_
+                    $gsp = @($spPerSku[$gskuid])
+                    $gsp.foreach({ $spHash[$_ + '_' + $gskuid] })
                 }) | Select-Object -ExcludeProperty type -Property $outputProperties
         }
     }

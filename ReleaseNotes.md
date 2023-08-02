@@ -1,4 +1,7 @@
 # Releases
+- 0.0.1.4 : improve Get-OGUserSku and Get-OGGroupLicense to include sku and/or service plan display name and provide passthrough of identifer into output.
+- 0.0.1.3 : releasing Get-OGUser function
+- 0.0.1.2 : Bug fix in Get-OGGroupLicenseReport for serviceplans that exist in more than one sku
 - 0.0.1.1 : integration refinements between Get-OGSku and Get-OGGroupLicenseReport
 - 0.0.1.0 : Breaking change - Use -IncludeDisplayName to include human readable displaynames in output from Get-OGGroupLicenseReport.  Get-OGSku also now includes -IncludeDisplayName as a parameter option.
 - 0.0.0.3 : Additional bug fixes

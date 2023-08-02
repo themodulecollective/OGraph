@@ -36,7 +36,7 @@ Function Get-OGUser {
         [string[]]$Property
     )
     $includeAttributes = 'businessPhones', 'displayName', 'givenName', 'id', 'jobTitle', 'mail', 'mobilePhone', 'officeLocation', 'preferredLanguage', 'surname', 'userPrincipalName'
-    $IncludeAttributeString = $($includeAttributes; $Property) -join ','
+    $IncludeAttributeString = $($($includeAttributes; $Property) | Sort-Object -unique) -join ','
     switch ($PSCmdlet.ParameterSetName) {
         'UPN' {
             $URI = "/$GraphVersion/users/$($userprincipalname)?`$select=$($IncludeAttributeString)"

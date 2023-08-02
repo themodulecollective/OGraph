@@ -19,10 +19,23 @@ function Update-OGSiteListItem {
 
     )]
     Param(
-        [Parameter(Mandatory)]$SiteId,
-        [Parameter(Mandatory)]$ListId,
-        [Parameter(Mandatory)]$ItemId,
-        [Parameter(Mandatory)]$Fields
+        #SharePoint Site Identifier
+        [Parameter(Mandatory)]
+        [String]$SiteId
+        ,
+        #SharePoint List Identifier
+        [Parameter(Mandatory)]
+        [String]$ListId
+        ,
+        #SharePoint List Item Identifier
+        [Parameter(Mandatory)]
+        $ItemId
+        ,
+        #Hashtable of item fields and values to include in the new item
+        [Parameter(Mandatory)]
+        [hashtable]$Fields
+
+
     )
     $URI = "/$GraphVersion/sites/$SiteId/lists/$ListId/items/$ItemId/fields"
     $account_params = @{

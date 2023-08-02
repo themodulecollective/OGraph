@@ -7,13 +7,13 @@ Get items in a SPO List
 
 Permissions: https://learn.microsoft.com/en-us/graph/api/site-get?view=graph-rest-1.0&tabs=http
 .PARAMETER SiteId
-Parameter description
+SharePoint Site Identifier
 
 .PARAMETER ListId
-Parameter description
+SharePoint List Identifier
 
 .PARAMETER ItemId
-Parameter description
+SharePoint List Item Identifier
 
 .EXAMPLE
 Get-OGSiteListItem -SiteId a3299706-eac5-46a1-b5eb-5709bea18e89 -ListId 79aafc35-e805-491c-bf19-f0b6c28b6be0
@@ -40,4 +40,3 @@ Function Get-OGSiteListItem {
     }
 
 }
-

@@ -21,17 +21,14 @@ function New-OGSiteListItem {
 
     )]
     Param(
-        #SharePoint Site Identifier
         [Parameter(Mandatory)]
-        [String]$SiteId
+        [String]$SiteId #SharePoint Site Identifier
         ,
-        #SharePoint List Identifier
         [Parameter(Mandatory)]
-        [String]$ListId
+        [String]$ListId #SharePoint List Identifier
         ,
-        #Hashtable of item fields and values to include in the new item
         [Parameter(Mandatory)]
-        [hashtable]$Fields
+        [hashtable]$Fields #Hashtable of item fields and values to include in the new item
     )
     $URI = "/$GraphVersion/sites/$SiteId/lists/$ListId/items"
     $body = @{fields = $Fields }

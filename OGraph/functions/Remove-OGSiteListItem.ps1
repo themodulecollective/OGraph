@@ -17,17 +17,15 @@ function Remove-OGSiteListItem {
 
     )]
     Param(
-        #SharePoint Site Identifier
+
         [Parameter(Mandatory)]
-        $SiteId
+        $SiteId #SharePoint Site Identifier
         ,
-        #SharePoint List Identifier
         [Parameter(Mandatory)]
-        $ListId
+        $ListId #SharePoint List Identifier
         ,
-        #SharePoint List Item Identifier
         [Parameter(Mandatory)]
-        $ItemId
+        $ItemId #SharePoint List Item Identifier
     )
     $URI = "/$GraphVersion/sites/$SiteId/lists/$ListId/items/$ItemId"
     $account_params = @{

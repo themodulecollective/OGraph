@@ -19,21 +19,17 @@ function Update-OGSiteListItem {
 
     )]
     Param(
-        #SharePoint Site Identifier
         [Parameter(Mandatory)]
-        [String]$SiteId
+        [String]$SiteId #SharePoint Site Identifier
         ,
-        #SharePoint List Identifier
         [Parameter(Mandatory)]
-        [String]$ListId
+        [String]$ListId #SharePoint List Identifier
         ,
-        #SharePoint List Item Identifier
         [Parameter(Mandatory)]
-        $ItemId
+        $ItemId #SharePoint List Item Identifier
         ,
-        #Hashtable of item fields and values to include in the new item
         [Parameter(Mandatory)]
-        [hashtable]$Fields
+        [hashtable]$Fields  #Hashtable of item fields and values to update in the item
 
 
     )

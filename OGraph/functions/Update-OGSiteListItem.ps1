@@ -15,21 +15,23 @@ Update-OGSiteListItem -SiteId 26776db6-ffd1-4e58-a6bf-851d6302733a -ListId 26f11
 
 #>
 function Update-OGSiteListItem {
-    [CmdletBinding(
-
-    )]
+    [CmdletBinding(SupportsShouldProcess)]
     Param(
+        #SharePoint Site Identifier
         [Parameter(Mandatory)]
-        [String]$SiteId #SharePoint Site Identifier
+        [String]$SiteId
         ,
+        #SharePoint List Identifier
         [Parameter(Mandatory)]
-        [String]$ListId #SharePoint List Identifier
+        [String]$ListId
         ,
+        #SharePoint List Item Identifier
         [Parameter(Mandatory)]
-        $ItemId #SharePoint List Item Identifier
+        $ItemId
         ,
+        #Hashtable of item fields and values to update in the item
         [Parameter(Mandatory)]
-        [hashtable]$Fields  #Hashtable of item fields and values to update in the item
+        [hashtable]$Fields
 
 
     )
@@ -40,5 +42,9 @@ function Update-OGSiteListItem {
         Method      = 'PATCH'
         ContentType = 'application/json'
     }
-    Invoke-MgGraphRequest @Account_params
+
+    if ($PSCmdlet.ShouldProcess($ItemID,'PATCH'))
+    {
+        Invoke-MgGraphRequest @Account_params
+    }
 }

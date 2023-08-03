@@ -13,19 +13,19 @@ Delete-SiteId 26776db6-ffd1-4e58-a6bf-851d6302733a -ListId 26f11389-ffd1-4e24-a7
 
 #>
 function Remove-OGSiteListItem {
-    [CmdletBinding(
-
-    )]
+    [CmdletBinding(SupportsShouldProcess)]
     Param(
-
+        #SharePoint Site Identifier
         [Parameter(Mandatory)]
-        $SiteId #SharePoint Site Identifier
+        $SiteId
         ,
+        #SharePoint List Identifier
         [Parameter(Mandatory)]
-        $ListId #SharePoint List Identifier
+        $ListId
         ,
+        #SharePoint List Item Identifier
         [Parameter(Mandatory)]
-        $ItemId #SharePoint List Item Identifier
+        $ItemId
     )
     $URI = "/$GraphVersion/sites/$SiteId/lists/$ListId/items/$ItemId"
     $account_params = @{
@@ -33,5 +33,9 @@ function Remove-OGSiteListItem {
         Method      = 'DELETE'
         ContentType = 'application/json'
     }
-    Invoke-MgGraphRequest @Account_params
+    if ($PSCmdlet.ShouldProcess($ItemID,'DELETE'))
+    {
+        Invoke-MgGraphRequest @Account_params
+    }
+
 }

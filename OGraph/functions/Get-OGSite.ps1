@@ -7,13 +7,13 @@ Get specified or all Sharepoint Online Sites in a tenant
 
 Permissions: https://learn.microsoft.com/en-us/graph/api/site-get?view=graph-rest-1.0&tabs=http
 .PARAMETER SiteId
-Parameter description
+SharePoint Site Identifier
 
 .PARAMETER All
-Parameter description
+Get all SharePoint Sites for the connected tenant
 
 .PARAMETER IncludePersonalSites
-Parameter description
+Include OneDrive for Business Sites in the results
 
 .EXAMPLE
 Get-OGSite -SiteId f232e745-0801-4705-beb6-4d9880fc92b4

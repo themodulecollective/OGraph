@@ -1,11 +1,15 @@
 <#
 .SYNOPSIS
  Add new item to a SharePoint list
-
 .DESCRIPTION
 Create a SharePoint Online list item by providing the SharePoint site ID, the List ID, and the values of the fields to be added in a hash table.
-
 Permissions: https://learn.microsoft.com/en-us/graph/api/listitem-create?view=graph-rest-1.0&tabs=http
+.PARAMETER SiteId
+SharePoint Site Identifier
+.PARAMETER ListId
+SharePoint List Identifier
+.PARAMETER Fields
+Hashtable of item fields and values to include in the new SharePoint List Item
 .EXAMPLE
 $fields = @{
     field_1 = "Sample String"
@@ -17,18 +21,16 @@ New-OGSiteListItem -SiteId 26776db6-ffd1-4e58-a6bf-851d6302733a -ListId 26f11389
 General notes
 #>
 function New-OGSiteListItem {
-    [CmdletBinding(
-
-    )]
+    [CmdletBinding(SupportsShouldProcess)]
     Param(
         [Parameter(Mandatory)]
-        [String]$SiteId #SharePoint Site Identifier
+        [String]$SiteId
         ,
         [Parameter(Mandatory)]
-        [String]$ListId #SharePoint List Identifier
+        [String]$ListId
         ,
         [Parameter(Mandatory)]
-        [hashtable]$Fields #Hashtable of item fields and values to include in the new item
+        [hashtable]$Fields
     )
     $URI = "/$GraphVersion/sites/$SiteId/lists/$ListId/items"
     $body = @{fields = $Fields }
@@ -38,5 +40,8 @@ function New-OGSiteListItem {
         Method      = 'POST'
         ContentType = 'application/json'
     }
-    Invoke-MgGraphRequest @Account_params
+    if ($PSCmdlet.ShouldProcess($ItemID,'POST'))
+    {
+        Invoke-MgGraphRequest @Account_params
+    }
 }

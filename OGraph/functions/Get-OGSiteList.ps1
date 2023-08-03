@@ -7,7 +7,7 @@ Get the lists in a Sharepoint Online Site
 
 Permissions: https://learn.microsoft.com/en-us/graph/api/site-get?view=graph-rest-1.0&tabs=http
 .PARAMETER SiteId
-Parameter description
+SharePoitn Site Identifier
 
 .EXAMPLE
 Get-OGSiteList -SiteId b767d342-3712-492a-94dc-504304cb8412
@@ -25,4 +25,3 @@ Function Get-OGSiteList {
     Get-OGNextPage -uri $URI
 
 }
-

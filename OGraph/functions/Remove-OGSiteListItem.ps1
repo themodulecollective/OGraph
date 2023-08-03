@@ -8,8 +8,7 @@ Delete a SharePoint Online list item by providing the SharePoint site ID, the Li
 Permissions: https://learn.microsoft.com/en-us/graph/api/listitem-delete?view=graph-rest-1.0&tabs=http
 
 .EXAMPLE
-
-Delete-SiteId 26776db6-ffd1-4e58-a6bf-851d6302733a -ListId 26f11389-ffd1-4e24-a7h1-85af93422733a -ItemId 1234 -Fields $fields
+Remove-OGSiteListItem -SiteId 26776db6-ffd1-4e58-a6bf-851d6302733a -ListId 26f11389-ffd1-4e24-a7h1-85af93422733a -ItemId 1234
 
 #>
 function Remove-OGSiteListItem {

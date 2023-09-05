@@ -35,14 +35,6 @@ Function Get-OGGroupDrive
 
         [Parameter()]
         [guid]$GroupId
-        ,
-        [Parameter()]
-        [string[]]$Property
-
-    )
-
-    $Property = @(
-
     )
 
     $URI = "/$GraphVersion/groups/$($GroupId)/drive/"

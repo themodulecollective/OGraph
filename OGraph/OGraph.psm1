@@ -10,6 +10,7 @@ $Script:ModuleFiles = @(
     $(Join-Path -Path $functions -ChildPath 'Get-OGGraphVersion.ps1')
     $(Join-Path -Path $functions -ChildPath 'Get-OGCalendar.ps1')
     $(Join-Path -Path $functions -ChildPath 'Get-OGGroup.ps1')
+    $(Join-Path -Path $functions -ChildPath 'Get-OGGroupDrive.ps1')
     $(Join-Path -Path $functions -ChildPath 'Get-OGGroupLicense.ps1')
     $(Join-Path -Path $functions -ChildPath 'Get-OGGroupLicenseReport.ps1')
     $(Join-Path -Path $functions -ChildPath 'Get-OGGroupEvent.ps1')

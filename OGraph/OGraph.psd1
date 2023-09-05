@@ -12,7 +12,7 @@
     RootModule           = '.\OGraph.psm1'
 
     # Version number of this module.
-    ModuleVersion        = '0.0.1.6'
+    ModuleVersion        = '0.0.1.7'
 
     # Supported PSEditions
     CompatiblePSEditions = @('Core', 'Desktop')
@@ -76,6 +76,7 @@
         'Delete-OGSiteListItem'
         'Get-OGCalendar'
         'Get-OGGroup'
+        'Get-OGGroupDrive'
         'Get-OGGroupEvent'
         'Get-OGGroupMember'
         'Get-OGGroupLicense'

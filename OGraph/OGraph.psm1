@@ -7,6 +7,7 @@ $Script:ModuleFiles = @(
     # Load Functions
     $(Join-Path -Path $functions -ChildPath 'Add-OGGroupMember.ps1')
     $(Join-Path -Path $functions -ChildPath 'Connect-OGGraph.ps1')
+    $(Join-Path -Path $functions -ChildPath 'Get-OGGraphVersion.ps1')
     $(Join-Path -Path $functions -ChildPath 'Get-OGCalendar.ps1')
     $(Join-Path -Path $functions -ChildPath 'Get-OGGroup.ps1')
     $(Join-Path -Path $functions -ChildPath 'Get-OGGroupLicense.ps1')
@@ -35,6 +36,7 @@ $Script:ModuleFiles = @(
     $(Join-Path -Path $Scripts -ChildPath 'RunFunctions.ps1')
 )
 
-foreach ($f in $ModuleFiles) {
+foreach ($f in $ModuleFiles)
+{
     . $f
 }

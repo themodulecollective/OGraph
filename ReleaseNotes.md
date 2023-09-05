@@ -1,4 +1,5 @@
 # Releases
+- 0.0.1.6 : Add Get-OGGraphVersion
 - 0.0.1.5 : Add Sharepoint site and list functions
 - 0.0.1.4 : improve Get-OGUserSku and Get-OGGroupLicense to include sku and/or service plan display name and provide passthrough of identifer into output.
 - 0.0.1.3 : releasing Get-OGUser function

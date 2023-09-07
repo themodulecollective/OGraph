@@ -1,4 +1,5 @@
 # Releases
+- 0.0.1.8 : Add -UnifiedAll Parameter and ParameterSet to Get-OGGroup
 - 0.0.1.7 : Add Get-OGGroupDrive
 - 0.0.1.6 : Add Get-OGGraphVersion
 - 0.0.1.5 : Add Sharepoint site and list functions

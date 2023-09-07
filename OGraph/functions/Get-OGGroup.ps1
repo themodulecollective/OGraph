@@ -42,7 +42,6 @@ Function Get-OGGroup
         [Parameter(ParameterSetName = 'All')]
         [Switch]$All
         ,
-                ,
         [Parameter(ParameterSetName = 'UnifiedAll')]
         [Switch]$UnifiedAll
         ,
@@ -51,8 +50,7 @@ Function Get-OGGroup
 
     )
     $IncludeAttributes =[System.Collections.Generic.List[string]]@('classification', 'createdByAppId', 'createdDateTime', 'deletedDateTime', 'description', 'displayName', 'expirationDateTime', 'groupTypes', 'id', 'infoCatalogs', 'isAssignableToRole', 'isManagementRestricted', 'mail', 'mailEnabled', 'mailNickname', 'membershipRule', 'membershipRuleProcessingState', 'onPremisesDomainName', 'onPremisesLastSyncDateTime', 'onPremisesNetBiosName', 'onPremisesProvisioningErrors', 'onPremisesSamAccountName', 'onPremisesSecurityIdentifier', 'onPremisesSyncEnabled', 'organizationId', 'preferredDataLocation', 'preferredLanguage', 'proxyAddresses', 'renewedDateTime', 'resourceBehaviorOptions', 'resourceProvisioningOptions', 'securityEnabled', 'securityIdentifier', 'theme', 'visibility', 'writebackConfiguration')
-    $Property.foreach({$IncludeAttributes.Add($_)})
-    $IncludeAttributeString = $IncludeAttributes -join ','
+    $IncludeAttributeString = $($($includeAttributes; $Property) | Sort-Object -unique) -join ','
     switch ($PSCmdlet.ParameterSetName)
     {
         'OID'

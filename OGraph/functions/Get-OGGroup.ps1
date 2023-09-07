@@ -70,7 +70,7 @@ Function Get-OGGroup
         }
         'UnifiedAll'
         {
-            $URI = "/$GraphVersion/groups?$filter=groupTypes/any(c:c+eq+'Unified')`$select=$($IncludeAttributeString)"
+            $URI = "/$GraphVersion/groups?`$filter=groupTypes/any(c:c+eq+'Unified')`$select=$($IncludeAttributeString)"
             Get-OGNextPage -Uri $URI -Filter
         }
     }

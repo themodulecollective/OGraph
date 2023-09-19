@@ -3,7 +3,7 @@
 PowerShell functions for administration of Microsoft 365 services using Graph endpoints.
 
 # Intro
-With the deprecation of the Azure AD and MSOL Powershell modules some basic functionaly is not readily available using the Microsoft.Graph modules which was included in these legacy modules. This module is part of the ongoing process of providing solutions to common tasks within Graph or adding functionality that doesn't currently exist in Microsoft.Graph Powershell SDK. It's intended as a companion module to Microsoft.Graph and in many ways relies on it.
+With the looming deprecation of the Azure AD and MSOL Powershell modules some functionaly is not readily available or straightforward to achieve using the Microsoft.Graph modules. This module is part of the ongoing process of providing solutions to common tasks within Graph or adding functionality that doesn't currently exist in Microsoft.Graph Powershell SDK. It's intended as a companion module to Microsoft.Graph and relies on it for authentication.
 
 For example, Invoke-MgGraphRequest offers a better experience than Invoke-Restmethod when making the API call. And Connect-MGgraph is great if you already have a token or can use your credentials to authenticate. Connect-OGGraph allows a users to get a new token from an Azure AD application using your access secret or certificate thumbprint and then run the Get-MgGraph function with that token. The example below gets a new token from the application and authenticates to Graph within the same function.
 

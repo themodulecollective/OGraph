@@ -1,7 +1,7 @@
 # ASAP
-- [ ] Add a -Raw option to OG functions to return un-modified graph results where applicable.  Example, Get-OGGroupDrive where we are modifying output for usability. 
+- [ ] Add a -Raw option to OG functions to return un-modified graph results where applicable.  Example, Get-OGGroupDrive where we are modifying output for usability.
 # Long Term
-- [ ] SPO: add in WebURL lookup in addtion to the current SiteID params
+- [x] SPO: add in WebURL lookup in addtion to the current SiteID params
 - [ ] Add back functionality like send-simplemessage
 
 # Completed

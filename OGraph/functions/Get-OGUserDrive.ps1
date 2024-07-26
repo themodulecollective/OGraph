@@ -25,9 +25,16 @@ Function Get-OGUserDrive {
         [switch]$PassthruUserPrincipalName
     )
     $URI = "/$GraphVersion/users/$userprincipalname/drive"
-    $rawDrive = Get-OGNextPage -uri $URI
+
+    try {$rawDrive = Get-OGNextPage -uri $URI -ErrorAction Stop}
+    catch {
+        Write-Warning -Message $_.tostring()
+    }
+    
+
     if ($PassthruUserPrincipalName) {
         $rawDrive = $rawDrive | Select-Object -Property @{n='UserPrincipalName';e={$UserPrincipalName}},*
     }
+    
     $rawDrive
 }

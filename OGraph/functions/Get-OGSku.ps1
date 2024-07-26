@@ -46,12 +46,23 @@ Function Get-OGSku
 
     foreach ($s in $rawSku)
     {
-        $s | Select-Object -Property *,
-        @{n='prepaidUnitsEnabled';e= {$_.prepaidUnits.enabled}},
-        @{n='nonConsumedUnits';e= {$($s.prepaidUnits.Enabled - $s.consumedUnits)}},
-        @{n='skuDisplayName';e = {$ReadableHash[$s.skuid]}},
-        @{n='servicePlanIDs';e= {$s.ServicePlans.foreach({$_.ServicePlanID}) -join $ServicePlanDelimiter}},
-        @{n='servicePlanNames';e= {$s.ServicePlans.foreach({$_.ServicePlanName}) -join $ServicePlanDelimiter}},
-        @{n='servicePlanDisplayNames'; e= {$s.ServicePlans.foreach({$ReadableHash[$_.ServicePlanID]}).where({$null -ne $_}) -join $ServicePlanDelimiter}}
+        $s | Select-Object -ExcludeProperty subscriptionIDs -Property 
+            'AccountName',
+            'AccountID', 
+            'AppliesTo', 
+            'CapabilityStatus',
+            'id',
+            'skuid'
+            'skupartnumber'
+            @{n='prepaidUnitsEnabled';e= {$_.prepaidUnits.enabled}},
+            'consumedUnits',
+            @{n='nonConsumedUnits';e= {$($s.prepaidUnits.Enabled - $s.consumedUnits)}},
+            @{n='skuDisplayName';e = {$ReadableHash[$s.skuid]}},
+            @{n='servicePlanIDs';e= {$s.ServicePlans.foreach({$_.ServicePlanID}) -join $ServicePlanDelimiter}},
+            @{n='servicePlanNames';e= {$s.ServicePlans.foreach({$_.ServicePlanName}) -join $ServicePlanDelimiter}},
+            @{n='servicePlanDisplayNames'; e= {$s.ServicePlans.foreach({$ReadableHash[$_.ServicePlanID]}).where({$null -ne $_}) -join $ServicePlanDelimiter}},
+            'SubscriptionIDs',
+            'ServicePlans',
+            'PrepaidUnits'
     }
 }

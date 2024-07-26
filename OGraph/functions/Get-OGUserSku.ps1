@@ -17,7 +17,8 @@ Function Get-OGUserSku {
     [CmdletBinding()]
     param (
         #Specify the UserPrincipalName for the user
-        [Parameter(Mandatory)]$UserPrincipalName
+        [Parameter(Mandatory)]
+        $UserPrincipalName
         ,
         # Specify whether to include the SKU and ServicePlan Display Names (Friendly Names) in the output object(s)
         [parameter()]

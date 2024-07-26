@@ -12,7 +12,7 @@
     RootModule           = '.\OGraph.psm1'
 
     # Version number of this module.
-    ModuleVersion        = '0.0.1.11'
+    ModuleVersion        = '0.0.1.12'
 
     # Supported PSEditions
     CompatiblePSEditions = @('Core', 'Desktop')
@@ -27,7 +27,7 @@
     CompanyName          = 'The Module Collective'
 
     # Copyright statement for this module
-    Copyright            = 'Copyright 2023 The Module Collective'
+    Copyright            = 'Copyright 2024 The Module Collective'
 
     # Description of the functionality provided by this module
     Description          = 'PowerShell functions for administration of Microsoft 365 services using Graph endpoints'
@@ -131,6 +131,7 @@
                 'Office365'
                 'PowerShell'
                 'AzureAD'
+                'EntraID'
             )
 
             # A URL to the license for this module.

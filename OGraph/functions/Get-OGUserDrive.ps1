@@ -6,9 +6,6 @@ Get user OneDrive Meta information
 Get user OneDrive Meta information
 
 Permissions: https://learn.microsoft.com/en-us/graph/api/drive-get?view=graph-rest-1.0&tabs=http
-.PARAMETER UserPrincipalName
-Userprincipalname or ID for lookup
-
 .EXAMPLE
 Get-OGUserDrive -userprincipalname test.user@domain.com
 .NOTES
@@ -18,8 +15,19 @@ Function Get-OGUserDrive {
 
     [CmdletBinding()]
     param (
-        [Parameter(Mandatory)]$UserPrincipalName
+        #Specify the UserPrincipalName OR ID for the user
+        [Parameter(Mandatory)]
+        $UserPrincipalName
+        ,
+        # Specify whether to pass through the UserPrincipalName to the output object at an attribute of the output
+        [parameter()]
+        [alias('PassthruUPN')]
+        [switch]$PassthruUserPrincipalName
     )
     $URI = "/$GraphVersion/users/$userprincipalname/drive"
-    Get-OGNextPage -uri $URI
+    $rawDrive = Get-OGNextPage -uri $URI
+    if ($PassthruUserPrincipalName) {
+        $rawDrive = $rawDrive | Select-Object -Property @{n='UserPrincipalName';e={$UserPrincipalName}},*
+    }
+    $rawDrive
 }

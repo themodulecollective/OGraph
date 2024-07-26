@@ -15,6 +15,9 @@ Get the Group(s) by DisplayName search
 .PARAMETER All
 Get all Groups from the Microsoft Tenant
 
+.PARAMETER UnifiedAll
+Get all Unified Groups from the Microsoft Tenant
+
 .PARAMETER Property
 Include the specified group property(ies) in the output
 
@@ -39,13 +42,15 @@ Function Get-OGGroup
         [Parameter(ParameterSetName = 'All')]
         [Switch]$All
         ,
+        [Parameter(ParameterSetName = 'UnifiedAll')]
+        [Switch]$UnifiedAll
+        ,
         [Parameter()]
         [string[]]$Property
 
     )
     $IncludeAttributes =[System.Collections.Generic.List[string]]@('classification', 'createdByAppId', 'createdDateTime', 'deletedDateTime', 'description', 'displayName', 'expirationDateTime', 'groupTypes', 'id', 'infoCatalogs', 'isAssignableToRole', 'isManagementRestricted', 'mail', 'mailEnabled', 'mailNickname', 'membershipRule', 'membershipRuleProcessingState', 'onPremisesDomainName', 'onPremisesLastSyncDateTime', 'onPremisesNetBiosName', 'onPremisesProvisioningErrors', 'onPremisesSamAccountName', 'onPremisesSecurityIdentifier', 'onPremisesSyncEnabled', 'organizationId', 'preferredDataLocation', 'preferredLanguage', 'proxyAddresses', 'renewedDateTime', 'resourceBehaviorOptions', 'resourceProvisioningOptions', 'securityEnabled', 'securityIdentifier', 'theme', 'visibility', 'writebackConfiguration')
-    $Property.foreach({$IncludeAttributes.Add($_)})
-    $IncludeAttributeString = $IncludeAttributes -join ','
+    $IncludeAttributeString = $($($includeAttributes; $Property) | Sort-Object -unique) -join ','
     switch ($PSCmdlet.ParameterSetName)
     {
         'OID'
@@ -62,6 +67,11 @@ Function Get-OGGroup
         {
             $URI = "/$GraphVersion/groups?`$select=$($IncludeAttributeString)"
             Get-OGNextPage -Uri $URI
+        }
+        'UnifiedAll'
+        {
+            $URI = "/$GraphVersion/groups?`$filter=groupTypes/any(c:c+eq+'Unified')&`$select=$($IncludeAttributeString)"
+            Get-OGNextPage -Uri $URI -Filter
         }
     }
 }

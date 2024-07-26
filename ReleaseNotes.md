@@ -1,4 +1,8 @@
 # Releases
+- 0.0.1.11 : Add -SiteURL parameter and supporting code to Get-OGSite
+- 0.0.1.10 : bug fix 2 for UnifiedAll parameter in Get-OGGroup
+- 0.0.1.9 : bug fix for UnifiedAll parameter in Get-OGGroup
+- 0.0.1.8 : Add -UnifiedAll Parameter and ParameterSet to Get-OGGroup
 - 0.0.1.7 : Add Get-OGGroupDrive
 - 0.0.1.6 : Add Get-OGGraphVersion
 - 0.0.1.5 : Add Sharepoint site and list functions

@@ -6,8 +6,12 @@ Get specified or all Sharepoint Online Sites in a tenant
 Get specified or all Sharepoint Online Sites in a tenant
 
 Permissions: https://learn.microsoft.com/en-us/graph/api/site-get?view=graph-rest-1.0&tabs=http
+
 .PARAMETER SiteId
 SharePoint Site Identifier
+
+.PARAMETER SiteURL
+SharePoint Site URL
 
 .PARAMETER All
 Get all SharePoint Sites for the connected tenant
@@ -28,6 +32,8 @@ Function Get-OGSite {
         [Parameter(Mandatory,
             ParameterSetName = 'SID')]$SiteId,
         [Parameter(Mandatory,
+            ParameterSetName = 'URL')]$SiteURL,
+        [Parameter(Mandatory,
             ParameterSetName = 'All')][Switch]$All,
         [Parameter(Mandatory = $False,
             ParameterSetName = 'All')][Switch]$IncludePersonalSites
@@ -36,6 +42,17 @@ Function Get-OGSite {
         'SID' {
             $account_params = @{
                 Uri         = "/$GraphVersion/sites/$SiteId"
+                Method      = 'GET'
+                OutputType  = 'PSObject'
+                ContentType = 'application/json'
+            }
+            Invoke-MgGraphRequest @Account_params
+        }
+        'URL' {
+        $SiteURI = [uri]::new($SiteURL)
+
+            $account_params = @{
+                Uri         = "/$GraphVersion/sites/$($SiteURI.Host):/$($SiteURI.LocalPath)"
                 Method      = 'GET'
                 OutputType  = 'PSObject'
                 ContentType = 'application/json'

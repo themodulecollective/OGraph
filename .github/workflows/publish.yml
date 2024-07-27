@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Build and publish
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - run: ./Build.ps1
         shell: pwsh
         env:

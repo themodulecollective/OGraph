@@ -47,8 +47,7 @@ Function Get-OGSku
 
     foreach ($s in $rawSku)
     {
-        $s | Select-Object -Property
-            'AccountName',
+        $s | Select-Object -Property 'AccountName',
             'AccountID',
             'AppliesTo',
             'CapabilityStatus',

@@ -47,22 +47,24 @@ Function Get-OGSku
 
     foreach ($s in $rawSku)
     {
-        $s | Select-Object -Property 'AccountName',
-            'AccountID',
-            'AppliesTo',
-            'CapabilityStatus',
-            'id',
-            'skuid'
-            'skupartnumber'
-            @{n='prepaidUnitsEnabled';e= {$_.prepaidUnits.enabled}},
-            'consumedUnits',
-            @{n='nonConsumedUnits';e= {$($s.prepaidUnits.Enabled - $s.consumedUnits)}},
-            @{n='skuDisplayName';e = {$ReadableHash[$s.skuid]}},
-            @{n='servicePlanIDs';e= {$s.ServicePlans.foreach({$_.ServicePlanID}) -join $ServicePlanDelimiter}},
-            @{n='servicePlanNames';e= {$s.ServicePlans.foreach({$_.ServicePlanName}) -join $ServicePlanDelimiter}},
-            @{n='servicePlanDisplayNames'; e= {$s.ServicePlans.foreach({$ReadableHash[$_.ServicePlanID]}).where({$null -ne $_}) -join $ServicePlanDelimiter}},
-            'SubscriptionIDs',
-            'ServicePlans',
-            'PrepaidUnits'
+        [PSCustomObject]@{
+            'AccountName' = $s.AccountName
+            'AccountID' = $s.AccountID
+            'AppliesTo' = $s.AppliesTo
+            'CapabilityStatus' = $s.CapabilityStatus
+            'id' = $s.id
+            'skuid' = $s.skuid
+            'skupartnumber'= $s.skupartnumber
+            'prepaidUnitsEnabled'= $s.prepaidUnits.enabled
+            'consumedUnits' = $s.consumedUnits
+            'nonConsumedUnits'= $s.prepaidUnits.Enabled - $s.consumedUnits
+            'skuDisplayName' = $ReadableHash[$s.skuid]
+            'servicePlanIDs' = $s.ServicePlans.foreach({$_.ServicePlanID}) -join $ServicePlanDelimiter
+            'servicePlanNames' = $s.ServicePlans.foreach({$_.ServicePlanName}) -join $ServicePlanDelimiter
+            'servicePlanDisplayNames' = $s.ServicePlans.foreach({$ReadableHash[$_.ServicePlanID]}).where({$null -ne $_}) -join $ServicePlanDelimiter
+            'SubscriptionIDs' = $s.SubscriptionIDs
+            'ServicePlans' = $s.ServicePlans
+            'PrepaidUnits' = $s.PrepaidUnits
+        }
     }
 }

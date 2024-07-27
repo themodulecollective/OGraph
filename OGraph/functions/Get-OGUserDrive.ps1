@@ -30,11 +30,11 @@ Function Get-OGUserDrive {
     catch {
         Write-Warning -Message $_.tostring()
     }
-    
+
 
     if ($PassthruUserPrincipalName) {
         $rawDrive = $rawDrive | Select-Object -Property @{n='UserPrincipalName';e={$UserPrincipalName}},*
     }
-    
+
     $rawDrive
 }

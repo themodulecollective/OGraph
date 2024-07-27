@@ -20,7 +20,7 @@ Permissions Required: https://learn.microsoft.com/en-us/graph/api/subscribedsku-
 Function Get-OGSku
 {
     [CmdletBinding()]
-    [OutputType([System.Array])]
+    [OutputType([System.Array],[System.String])]
     param(
         [switch]$IncludeDisplayName
         ,

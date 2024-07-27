@@ -20,6 +20,7 @@ Permissions Required: https://learn.microsoft.com/en-us/graph/api/subscribedsku-
 Function Get-OGSku
 {
     [CmdletBinding()]
+    [OutputType([System.Array])]
     param(
         [switch]$IncludeDisplayName
         ,
@@ -46,7 +47,7 @@ Function Get-OGSku
 
     foreach ($s in $rawSku)
     {
-        $s | Select-Object -ExcludeProperty subscriptionIDs -Property 
+        $s | Select-Object -Property 
             'AccountName',
             'AccountID', 
             'AppliesTo', 

@@ -43,8 +43,9 @@ Function Get-OGUser {
             Get-OGNextPage -Uri $URI
         }
         'Search' {
-            $URI = "/$GraphVersion/users?`$select=$($IncludeAttributeString)`$search=`"displayName:$SearchDisplayName`""
-            Get-OGNextPage -uri $URI -filter
+            $IncludeAttributeString = $includeAttributes -split ','
+            $URI = "/$GraphVersion/users?`$search=`"displayName:$SearchDisplayName`""
+            Get-OGNextPage -uri $URI -filter | select-object $IncludeAttributeString
         }
         'All' {
             $URI = "/$GraphVersion/users?`$select=$($IncludeAttributeString)"

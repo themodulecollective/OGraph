@@ -28,7 +28,7 @@ Function Get-OGUser {
 
     [CmdletBinding(DefaultParameterSetName = 'UPN')]
     param (
-        [Parameter(ParameterSetName = 'UPN')]$UserPrincipalName,
+        [Parameter(ParameterSetName = 'UPN', ValueFromPipeline, ValueFromPipelineByPropertyName, Mandatory)]$UserPrincipalName,
         [Parameter(ParameterSetName = 'Search')]$SearchDisplayName,
         [Parameter(ParameterSetName = 'All')]
         [Switch]$All,

@@ -9,7 +9,7 @@ Get users from Entra ID with there signInActivity
 Get users by the entra user id
 
 .PARAMETER All
-Get users by the entra userprincipalname
+Get users by the Entra userprincipalname
 
 NOTE: The signInActivity call made by Graph only accepts Entra Id. The parameter will be less performant than UserId because users the UPN to get the user Id.
 
@@ -20,7 +20,7 @@ Select additional properties of a user
 Get-OGUserLastLogin -UserId d7e0Qb89-6ef6-4a6b-433f-193558b630ff
 
 .NOTES
-General notes
+The signInActivity property only works with Graph version Beta. The function automatically changes the graph version to beta but does not change it globally.
 #>
 Function Get-OGUserLastLogin {
     [CmdletBinding(DefaultParameterSetName = 'UserId')]
@@ -40,7 +40,7 @@ Function Get-OGUserLastLogin {
 
     $includeAttributes = 'signInActivity', 'businessPhones', 'displayName', 'givenName', 'id', 'jobTitle', 'mail', 'mobilePhone', 'officeLocation', 'preferredLanguage', 'surname', 'UserID'
     $IncludeAttributeString = $($($includeAttributes; $Property) | Sort-Object -unique) -join ','
-
+    $GraphVersion = 'Beta'
     switch ($PSCmdlet.ParameterSetName) {
         'UserID' {
             $URI = "/$GraphVersion/users/$($UserID)?`$select=$($IncludeAttributeString)"

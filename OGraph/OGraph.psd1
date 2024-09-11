@@ -92,6 +92,7 @@
         'Get-OGUser'
         'Get-OGUserDrive'
         'Get-OGUserEvent'
+        'Get-OGUserLastLogin'
         'Get-OGUserSku'
         'New-OGSiteListItem'
         'Remove-OGGroupMember'

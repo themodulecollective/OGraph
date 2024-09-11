@@ -25,10 +25,10 @@ The signInActivity property only works with Graph version Beta. The function aut
 Function Get-OGUserLastLogin {
     [CmdletBinding(DefaultParameterSetName = 'UserId')]
     param (
-        [Parameter(ParameterSetName = 'UserID', ValueFromPipeline, ValueFromPipelineByPropertyName)]
+        [Parameter(ParameterSetName = 'UserID' )]
         [string]$UserID
         ,
-        [Parameter(ParameterSetName = 'UPN', ValueFromPipeline, ValueFromPipelineByPropertyName)]
+        [Parameter(ParameterSetName = 'UPN')]
         [string]$UserPrincipalName
         ,
         [Parameter(ParameterSetName = 'All')]

@@ -47,7 +47,12 @@ Function Get-OGUserLastLogin {
             Get-OGNextPage -URI $URI -Filter
         }
         'UPN' {
-            $UserID = $(Get-OGUser -UserPrincipalName $UserPrincipalName).id
+            try {
+                $UserID = $(Get-OGUser -UserPrincipalName $UserPrincipalName -ErrorAction Stop).id
+            }
+            catch {
+                Throw($_)
+            }
             $URI = "/$GraphVersion/users/$($UserID)?`$select=$($IncludeAttributeString)"
             Get-OGNextPage -URI $URI -Filter
         }

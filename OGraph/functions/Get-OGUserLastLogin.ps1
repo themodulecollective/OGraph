@@ -50,14 +50,16 @@ Function Get-OGUserLastLogin {
             Get-OGNextPage -URI $URI -Filter
         }
         'UPN' {
-            try {
-                $UserID = $(Get-OGUser -UserPrincipalName $UserPrincipalName -ErrorAction Stop).id
+            $UserID = $(Get-OGUser -UserPrincipalName $UserPrincipalName -ErrorAction Stop).id
+            switch ([string]::IsNullOrWhiteSpace($UserID))
+            {
+                $false
+                {
+                    $URI = "/$GraphVersion/users/$($UserID)?`$select=$($IncludeAttributeString)"
+                    Get-OGNextPage -URI $URI -Filter
+                }
             }
-            catch {
-                Throw($_)
-            }
-            $URI = "/$GraphVersion/users/$($UserID)?`$select=$($IncludeAttributeString)"
-            Get-OGNextPage -URI $URI -Filter
+
         }
         'All' {
             $URI = "/$GraphVersion/users?`$select=$($IncludeAttributeString)"

@@ -9,20 +9,19 @@ Delete Team's chat using the Chat's ID
 The Chat Id
 
 .EXAMPLE
-Remove-OGChatMessage -ChatId "19:1f8823b7-4ef3-4e6e-aca5-2553f676bd73_85c55e4c-6356-4cf7-b564-928b1034c4ac@unq.gbl.spaces"
+Remove-OGChat -ChatId "19:1f8823b7-4ef3-4e6e-aca5-2553f676bd73_85c55e4c-6356-4cf7-b564-928b1034c4ac@unq.gbl.spaces"
 
 .NOTES
 General notes
 #>
-function Remove-OGChatMessage {
+function Remove-OGChat {
     [CmdletBinding(SupportsShouldProcess)]
     Param(
         [Parameter(Mandatory)]
         $ChatId
     )
 
-    if ($PSCmdlet.ShouldProcess($ChatId))
-    {
+    if ($PSCmdlet.ShouldProcess($ChatId)) {
         $URI = "/$GraphVersion/chats/$chatId"
         $account_params = @{
             URI         = $URI

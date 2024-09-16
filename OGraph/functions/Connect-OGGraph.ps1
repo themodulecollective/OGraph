@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-Get API Token from Azure AD app using Access Secret or Certificate Thumprint, then authenticate to graph with the token. Or authenticate using user credentials.
+Get API Token from Azure AD app using Access Secret or Certificate Thumbprint, then authenticate to graph with the token. Or authenticate using user credentials.
 
 .DESCRIPTION
 This function allows easy Authentication to Azure AD application authentication tokens or User Credentials. To get a Azure AD application token, provide the tenant ID, Application ID, and either an access secret or certificate thumbprint. The token with automatically authenticate the session after a valid token is acquired or online credentials are entered. If you have an existing token, paste it into accesstoken.
@@ -15,7 +15,7 @@ Identifier for the Microsoft Tenant
 Client Secret for the Application Registration to be used for client authentication for connection to the Microsoft Tenant
 
 .PARAMETER CertificateThumbprint
-Certificat thumbprint of the certificate to be used for client authentiaction for connection to the Microsoft Tenant
+Certificate thumbprint of the certificate to be used for client authentication for connection to the Microsoft Tenant
 
 .PARAMETER UseDeviceAuthentication
 Use device code flow

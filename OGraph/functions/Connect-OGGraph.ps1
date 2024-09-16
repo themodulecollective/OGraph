@@ -46,7 +46,7 @@ Function Connect-OGGraph {
         $TenantId
         ,
         [Parameter(Mandatory, Parametersetname = 'Secret')]
-        [PSCredential]$ClientSecretCredential
+        [SecureString]$ClientSecret
         ,
         [Parameter(Mandatory, Parametersetname = 'Cert')]
         $CertificateThumbprint
@@ -71,7 +71,8 @@ Function Connect-OGGraph {
             }
             $ConnectGraph = Invoke-RestMethod -Uri "https://login.microsoftonline.com/$TenantId/oauth2/v2.0/token" -Method POST -Body $Body
             $script:GraphAPIKey = ConvertTo-SecureString -AsPlainText $ConnectGraph.access_token #>
-            Connect-MgGraph -ClientSecretCredential $ClientSecretCredential
+            $ClientSecretCredential = [PSCredential]::new($ApplicationID,$ClientSecret)
+            Connect-MgGraph -ClientSecretCredential $ClientSecretCredential -TenantId $TenantId
         }
         'Cert' {
             $splat = @{

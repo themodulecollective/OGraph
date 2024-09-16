@@ -7,6 +7,8 @@ $Script:ModuleFiles = @(
     # Load Functions
     $(Join-Path -Path $functions -ChildPath 'Add-OGGroupMember.ps1')
     $(Join-Path -Path $functions -ChildPath 'Connect-OGGraph.ps1')
+    $(Join-Path -Path $functions -ChildPath 'Get-OGChatMembership.ps1')
+    $(Join-Path -Path $functions -ChildPath 'Get-OGDriveUser.ps1')
     $(Join-Path -Path $functions -ChildPath 'Get-OGGraphVersion.ps1')
     $(Join-Path -Path $functions -ChildPath 'Get-OGCalendar.ps1')
     $(Join-Path -Path $functions -ChildPath 'Get-OGGroup.ps1')
@@ -29,6 +31,8 @@ $Script:ModuleFiles = @(
     $(Join-Path -Path $functions -ChildPath 'Get-OGUserLastLogin.ps1')
     $(Join-Path -Path $functions -ChildPath 'Get-OGUserSku.ps1')
     $(Join-Path -Path $functions -ChildPath 'New-OGSiteListItem.ps1')
+    $(Join-Path -Path $functions -ChildPath 'Get-OGChatMembership.ps1')
+    $(Join-Path -Path $functions -ChildPath 'Remove-OGDriveItemById.ps1')
     $(Join-Path -Path $functions -ChildPath 'Remove-OGGroupMember.ps1')
     $(Join-Path -Path $functions -ChildPath 'Remove-OGSiteListItem.ps1')
     $(Join-Path -Path $functions -ChildPath 'Set-OGUser.ps1')

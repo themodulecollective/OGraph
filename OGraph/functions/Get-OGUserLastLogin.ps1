@@ -5,11 +5,14 @@ Get users from Entra ID with there signInActivity
 .DESCRIPTION
 Get users from Entra ID with there signInActivity
 
+.PARAMETER UserPrincipalName
+Get users by the UserPrincipalName
+
 .PARAMETER UserID
 Get users by the entra user id
 
 .PARAMETER All
-Get users by the Entra userprincipalname
+Get last login for all users
 
 NOTE: The signInActivity call made by Graph only accepts Entra Id. The parameter will be less performant than UserId because users the UPN to get the user Id.
 
@@ -25,10 +28,10 @@ The signInActivity property only works with Graph version Beta. The function aut
 Function Get-OGUserLastLogin {
     [CmdletBinding(DefaultParameterSetName = 'UserId')]
     param (
-        [Parameter(ParameterSetName = 'UserID', ValueFromPipeline, ValueFromPipelineByPropertyName)]
+        [Parameter(ParameterSetName = 'UserID' )]
         [string]$UserID
         ,
-        [Parameter(ParameterSetName = 'UPN', ValueFromPipeline, ValueFromPipelineByPropertyName)]
+        [Parameter(ParameterSetName = 'UPN')]
         [string]$UserPrincipalName
         ,
         [Parameter(ParameterSetName = 'All')]

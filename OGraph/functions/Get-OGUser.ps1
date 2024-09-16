@@ -28,13 +28,14 @@ Function Get-OGUser {
 
     [CmdletBinding(DefaultParameterSetName = 'UPN')]
     param (
-        [Parameter(ParameterSetName = 'UPN', ValueFromPipeline, ValueFromPipelineByPropertyName, Mandatory)]$UserPrincipalName,
+        [Parameter(ParameterSetName = 'UPN', Mandatory)]$UserPrincipalName,
         [Parameter(ParameterSetName = 'Search')]$SearchDisplayName,
         [Parameter(ParameterSetName = 'All')]
         [Switch]$All,
         [Parameter()]
         [string[]]$Property
     )
+
     $includeAttributes = 'businessPhones', 'displayName', 'givenName', 'id', 'jobTitle', 'mail', 'mobilePhone', 'officeLocation', 'preferredLanguage', 'surname', 'userPrincipalName'
     $IncludeAttributeString = $($($includeAttributes; $Property) | Sort-Object -unique) -join ','
     switch ($PSCmdlet.ParameterSetName) {

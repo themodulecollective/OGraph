@@ -12,7 +12,7 @@
     RootModule           = '.\OGraph.psm1'
 
     # Version number of this module.
-    ModuleVersion        = '0.0.1.16'
+    ModuleVersion        = '0.0.1.17'
 
     # Supported PSEditions
     CompatiblePSEditions = @('Core', 'Desktop')
@@ -96,7 +96,7 @@
         'Get-OGUserLastLogin'
         'Get-OGUserSku'
         'New-OGSiteListItem'
-        'Remove-OGChatMember'
+        #'Remove-OGChatMember'
         'Remove-OGChatMessage'
         'Remove-OGDriveItemById'
         'Remove-OGGroupMember'

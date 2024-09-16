@@ -12,7 +12,7 @@ The Drive id which can be found with Get-OGDriveUser
 The unique id of the file
 
 .PARAMETER PermanentDelete
-Will bypass the recyle bin and permanently remove the file
+Will bypass the recycle bin and permanently remove the file
 
 .EXAMPLE
 Remove-OGDriveItemById -DriveId "b!bICvC12eVkG3A6E0TLfXhEHaOgbTPzRPjOXJAb7nX89Stj2yZVjpT7n-msgD_iiC" -ItemId 76a70926-551a-4dlb-b5c9-b6044a6efeEc

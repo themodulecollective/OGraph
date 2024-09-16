@@ -33,39 +33,36 @@ Connect-OGGraph -ApplicationID f3857fc2-d4a5-1427-8f4c-2bdcd0cd9a2d -TenantID 27
 .NOTES
 General notes
 #>
-Function Connect-OGGraph
-{
+Function Connect-OGGraph {
     [CmdletBinding(DefaultParameterSetName = 'Interactive')]
     param (
 
-        [Parameter(Mandatory,Parametersetname = 'Secret')]
-        [Parameter(Mandatory,Parametersetname = 'Cert')]
+        [Parameter(Mandatory, Parametersetname = 'Secret')]
+        [Parameter(Mandatory, Parametersetname = 'Cert')]
         $ApplicationID
         ,
-        [Parameter(Mandatory,Parametersetname = 'Secret')]
-        [Parameter(Mandatory,Parametersetname = 'Cert')]
+        [Parameter(Mandatory, Parametersetname = 'Secret')]
+        [Parameter(Mandatory, Parametersetname = 'Cert')]
         $TenantId
         ,
-        [Parameter(Mandatory,Parametersetname = 'Secret')]
+        [Parameter(Mandatory, Parametersetname = 'Secret')]
         $ClientSecret
         ,
-        [Parameter(Mandatory,Parametersetname = 'Cert')]
+        [Parameter(Mandatory, Parametersetname = 'Cert')]
         $CertificateThumbprint
         ,
         [Parameter(Parametersetname = 'Interactive')]
         [Parameter(Parametersetname = 'DeviceAuth')]
         [string[]]$Scope
         ,
-        [Parameter(Mandatory,Parametersetname = 'Token')]
+        [Parameter(Mandatory, Parametersetname = 'Token')][SecureString]
         $AccessToken
         ,
-        [Parameter(Mandatory,Parametersetname = 'DeviceAuth')]
+        [Parameter(Mandatory, Parametersetname = 'DeviceAuth')]
         [switch]$UseDeviceAuthentication
     )
-    switch ($PSCmdlet.ParameterSetName)
-    {
-        'Secret'
-        {
+    switch ($PSCmdlet.ParameterSetName) {
+        'Secret' {
             $Body = @{
                 Grant_Type    = 'client_credentials'
                 Scope         = 'https://graph.microsoft.com/.default'
@@ -73,11 +70,10 @@ Function Connect-OGGraph
                 Client_Secret = $ClientSecret
             }
             $ConnectGraph = Invoke-RestMethod -Uri "https://login.microsoftonline.com/$TenantId/oauth2/v2.0/token" -Method POST -Body $Body
-            $script:GraphAPIKey = $ConnectGraph.access_token
+            $script:GraphAPIKey = ConvertTo-SecureString -AsPlainText $ConnectGraph.access_token
             Connect-MgGraph -AccessToken $GraphAPIKey
         }
-        'Cert'
-        {
+        'Cert' {
             $splat = @{
                 ClientID              = $ApplicationID
                 TenantId              = $TenantId
@@ -85,37 +81,28 @@ Function Connect-OGGraph
             }
             Connect-MgGraph @splat
         }
-        'Interactive'
-        {
-            switch ($scope.count -ge 1)
-            {
-                $true
-                {
+        'Interactive' {
+            switch ($scope.count -ge 1) {
+                $true {
                     Connect-MgGraph -UseDeviceAuthentication -Scopes $Scope
                 }
-                $false
-                {
+                $false {
                     Connect-MgGraph
                 }
             }
         }
-        'DeviceAuth'
-        {
-            switch ($scope.count -ge 1)
-            {
-                $true
-                {
+        'DeviceAuth' {
+            switch ($scope.count -ge 1) {
+                $true {
                     Connect-MgGraph -UseDeviceAuthentication -Scopes $Scope
                 }
-                $false
-                {
+                $false {
                     Connect-MgGraph -UseDeviceAuthentication
                 }
             }
 
         }
-        'Token'
-        {
+        'Token' {
             Connect-MgGraph -AccessToken $AccessToken
         }
     }

@@ -97,7 +97,7 @@
         'Get-OGUserSku'
         'New-OGSiteListItem'
         'Remove-OGChatMember'
-        'Remove-OGChatMessages'
+        'Remove-OGChatMessage'
         'Remove-OGDriveItemById'
         'Remove-OGGroupMember'
         'Remove-OGSiteListItem'

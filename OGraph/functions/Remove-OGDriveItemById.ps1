@@ -21,7 +21,7 @@ Remove-OGDriveItemById -DriveId "b!bICvC12eVkG3A6E0TLfXhEHaOgbTPzRPjOXJAb7nX89St
 General notes
 #>
 function Remove-OGDriveItemById {
-    [CmdletBinding()]
+    [CmdletBinding(SupportsShouldProcess)]
     Param(
         [Parameter(Mandatory)]
         $DriveId
@@ -31,24 +31,28 @@ function Remove-OGDriveItemById {
         [Parameter()][switch]
         $PermanentDelete
     )
-    switch ($PermanentDelete) {
-        false {
-            $URI = "/$GraphVersion/drives/$DriveId/items/$ItemId"
-            $account_params = @{
-                URI         = $URI
-                Method      = 'DELETE'
-                ContentType = 'application/json'
+
+    if ($PSCmdlet.ShouldProcess($DriveId, "Remove Item $ItemID"))
+    {
+        switch ($PermanentDelete) {
+            false {
+                $URI = "/$GraphVersion/drives/$DriveId/items/$ItemId"
+                $account_params = @{
+                    URI         = $URI
+                    Method      = 'DELETE'
+                    ContentType = 'application/json'
+                }
+                Invoke-MgGraphRequest @Account_params
             }
-            Invoke-MgGraphRequest @Account_params
-        }
-        true {
-            $URI = "/$GraphVersion/drives/$DriveId/items/$ItemId/permanentDelete"
-            $account_params = @{
-                URI         = $URI
-                Method      = 'POST'
-                ContentType = 'application/json'
+            true {
+                $URI = "/$GraphVersion/drives/$DriveId/items/$ItemId/permanentDelete"
+                $account_params = @{
+                    URI         = $URI
+                    Method      = 'POST'
+                    ContentType = 'application/json'
+                }
+                Invoke-MgGraphRequest @Account_params
             }
-            Invoke-MgGraphRequest @Account_params
         }
     }
 }

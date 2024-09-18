@@ -49,8 +49,6 @@ Function Get-OGSiteListItem {
         if ($Column) {
             $ColumnString = $Column -join ','
             $URI = "/$GraphVersion/sites/$SiteId/lists/$ListId/items?`$expand=fields(`$select=$ColumnString)"
-
-            write-host $URI
             $response = Get-OGNextPage -uri $URI
             $response.fields
         }

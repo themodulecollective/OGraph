@@ -27,7 +27,7 @@ function Update-OGSiteListItem {
         ,
         #SharePoint List Item Identifier
         [Parameter(Mandatory)]
-        $ItemId
+        [string]$ItemId
         ,
         #Hashtable of item fields and values to update in the item
         [Parameter(Mandatory)]

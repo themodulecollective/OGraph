@@ -86,6 +86,7 @@
         'Get-OGSiteList'
         'Get-OGSiteListColumn'
         'Get-OGSiteListItem'
+        'Get-OGSiteListItemFailureField'
         'Get-OGSiteListItemVersion'
         'Get-OGNextPage'
         'Get-OGReadableSku'

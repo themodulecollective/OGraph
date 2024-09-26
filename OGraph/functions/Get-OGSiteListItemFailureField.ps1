@@ -37,12 +37,12 @@ function Get-OGSiteListItemFailureField {
 
     )
     foreach ($entry in $fields.GetEnumerator()) {
-        $checkHash = @{}
-        $checkHash[$entry.Key] = $entry.Value
+        $Check = @{}
+        $Check[$entry.Key] = $entry.Value
         $URI = "/$GraphVersion/sites/$SiteId/lists/$ListId/items/$ItemId/fields"
         $account_params = @{
             URI         = $URI
-            body        = $checkHash | ConvertTo-Json -Depth 5
+            body        = $Check | ConvertTo-Json -Depth 5
             Method      = 'PATCH'
             ContentType = 'application/json'
         }
@@ -54,7 +54,6 @@ function Get-OGSiteListItemFailureField {
             catch {
                 Write-host $entry.Key = $entry.Value
                 $_
-                $checkHash | ConvertTo-Json -Depth 5
             }
 
         }

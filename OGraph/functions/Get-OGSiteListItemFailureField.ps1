@@ -49,10 +49,10 @@ function Get-OGSiteListItemFailureField {
         # Write-host $entry.Key = $entry.Value
         if ($PSCmdlet.ShouldProcess($ItemID, 'PATCH')) {
             try {
-                $result = Invoke-MgGraphRequest @Account_params
+                $null = Invoke-MgGraphRequest @Account_params
             }
             catch {
-                Write-host $entry.Key = $entry.Value
+                Write-Information -MessageData $('Failed: ' +  $entry.Key + ' = ' + $entry.Value) -InformationAction Continue
                 $_
             }
 

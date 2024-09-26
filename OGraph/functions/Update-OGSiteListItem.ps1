@@ -29,16 +29,29 @@ function Update-OGSiteListItem {
         [Parameter(Mandatory)]
         [string]$ItemId
         ,
-        #Hashtable of item fields and values to update in the item
+        #Hashtable of item fields and Values to update in the item
         [Parameter(Mandatory)]
         [hashtable]$Fields
-
-
+        ,
+        #Removes fields with empty strings from the $Fields hash table
+        [Parameter()]
+        [switch]$RemoveNullField
     )
+    if ($RemoveNullField) {
+        $Values = @{}
+        $fields.Keys.ForEach({
+                if (-not [string]::IsNullOrEmpty($fields[$_])) {
+                    $Values[$_] = $fields[$_]
+                }
+            })
+    }
+    else {
+        $Values = $fields
+    }
     $URI = "/$GraphVersion/sites/$SiteId/lists/$ListId/items/$ItemId/fields"
     $account_params = @{
         URI         = $URI
-        body        = $Fields | ConvertTo-Json -Depth 5
+        body        = $Values | ConvertTo-Json -Depth 5
         Method      = 'PATCH'
         ContentType = 'application/json'
     }

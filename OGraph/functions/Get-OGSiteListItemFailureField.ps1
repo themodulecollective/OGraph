@@ -1,3 +1,20 @@
+<#
+.SYNOPSIS
+Patches each field in a SPO list item and returns any that fail
+
+.DESCRIPTION
+Patches each field in a SPO list item and returns any that fail
+
+.EXAMPLE
+$fields = @{
+    field_1 = "Sample String"
+    field_2 = "Sample String2"
+}
+Get-OGSiteListItemFailureField -SiteId 26776db6-ffd1-4e58-a6bf-851d6302733a -ListId 26f11389-ffd1-4e24-a7h1-85af93422733a -ItemId 1234 -Fields $fields
+
+.NOTES
+General notes
+#>
 function Get-OGSiteListItemFailureField {
     [CmdletBinding(SupportsShouldProcess)]
     Param(
@@ -29,14 +46,15 @@ function Get-OGSiteListItemFailureField {
             Method      = 'PATCH'
             ContentType = 'application/json'
         }
-        Write-host $entry.Key = $entry.Value
+        # Write-host $entry.Key = $entry.Value
         if ($PSCmdlet.ShouldProcess($ItemID, 'PATCH')) {
             try {
-                Invoke-MgGraphRequest @Account_params
+                $result = Invoke-MgGraphRequest @Account_params
             }
             catch {
-                write-host "$($entry.key) = $($entry.value)"
-                return
+                Write-host $entry.Key = $entry.Value
+                $_
+                $checkHash | ConvertTo-Json -Depth 5
             }
 
         }

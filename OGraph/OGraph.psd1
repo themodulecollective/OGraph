@@ -12,7 +12,7 @@
     RootModule           = '.\OGraph.psm1'
 
     # Version number of this module.
-    ModuleVersion        = '0.0.1.20'
+    ModuleVersion        = '0.0.1.21'
 
     # Supported PSEditions
     CompatiblePSEditions = @('Core', 'Desktop')

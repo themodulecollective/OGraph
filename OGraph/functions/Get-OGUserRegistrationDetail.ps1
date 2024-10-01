@@ -17,12 +17,12 @@ NOTE: Using UserId users will be slightly more performant. A lookup is being per
 Get user registration details for all users
 
 .EXAMPLE
-Get-OGUserRegistrationDetails -UserId d7e0Qb89-6ef6-4a6b-433f-193558b630ff
+Get-OGUserRegistrationDetail -UserId d7e0Qb89-6ef6-4a6b-433f-193558b630ff
 
 .NOTES
 General notes
 #>
-Function Get-OGUserRegistrationDetails {
+Function Get-OGUserRegistrationDetail {
 
     [CmdletBinding(DefaultParameterSetName = 'All')]
     param (

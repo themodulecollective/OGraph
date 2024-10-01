@@ -30,7 +30,7 @@ $Script:ModuleFiles = @(
     $(Join-Path -Path $functions -ChildPath 'Get-OGUserDrive.ps1')
     $(Join-Path -Path $functions -ChildPath 'Get-OGUserEvent.ps1')
     $(Join-Path -Path $functions -ChildPath 'Get-OGUserLastLogin.ps1')
-    $(Join-Path -Path $functions -ChildPath 'Get-OGUserRegistrationDetails.ps1')
+    $(Join-Path -Path $functions -ChildPath 'Get-OGUserRegistrationDetail.ps1')
     $(Join-Path -Path $functions -ChildPath 'Get-OGUserSku.ps1')
     $(Join-Path -Path $functions -ChildPath 'New-OGSiteListItem.ps1')
     $(Join-Path -Path $functions -ChildPath 'Remove-OGChatMember.ps1')

@@ -51,7 +51,12 @@
     # ProcessorArchitecture = ''
 
     # Modules that must be imported into the global environment prior to importing this module
-    RequiredModules      = @('Microsoft.Graph.Authentication')
+    RequiredModules      = @(
+        @{
+            ModuleName    = 'Microsoft.Graph.Authentication'
+            ModuleVersion = '2.23.0'
+        }
+    )
 
     # Assemblies that must be loaded prior to importing this module
     # RequiredAssemblies = @()

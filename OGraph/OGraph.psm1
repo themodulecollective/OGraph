@@ -17,6 +17,7 @@ $Script:ModuleFiles = @(
     $(Join-Path -Path $functions -ChildPath 'Get-OGGroupLicenseReport.ps1')
     $(Join-Path -Path $functions -ChildPath 'Get-OGGroupEvent.ps1')
     $(Join-Path -Path $functions -ChildPath 'Get-OGGroupMember.ps1')
+    $(Join-Path -Path $functions -ChildPath 'Get-OGGroupSite.ps1')
     $(Join-Path -Path $functions -ChildPath 'Get-OGSite.ps1')
     $(Join-Path -Path $functions -ChildPath 'Get-OGSiteList.ps1')
     $(Join-Path -Path $functions -ChildPath 'Get-OGSiteListColumn.ps1')

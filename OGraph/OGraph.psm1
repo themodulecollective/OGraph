@@ -24,6 +24,7 @@ $Script:ModuleFiles = @(
     $(Join-Path -Path $functions -ChildPath 'Get-OGSiteListItem.ps1')
     $(Join-Path -Path $functions -ChildPath 'Get-OGSiteListItemFailureField.ps1')
     $(Join-Path -Path $functions -ChildPath 'Get-OGSiteListItemVersion.ps1')
+    $(Join-Path -Path $functions -ChildPath 'Get-OGSiteSubsite.ps1')
     $(Join-Path -Path $functions -ChildPath 'Get-OGNextPage.ps1')
     $(Join-Path -Path $functions -ChildPath 'Get-OGReadableSku.ps1')
     $(Join-Path -Path $functions -ChildPath 'Get-OGSku.ps1')

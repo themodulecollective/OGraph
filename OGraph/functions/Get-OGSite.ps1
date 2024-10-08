@@ -40,27 +40,16 @@ Function Get-OGSite {
     )
     switch ($PSCmdlet.ParameterSetName) {
         'SID' {
-            $account_params = @{
-                Uri         = "/$GraphVersion/sites/$SiteId"
-                Method      = 'GET'
-                OutputType  = 'PSObject'
-                ContentType = 'application/json'
-            }
-            Invoke-MgGraphRequest @Account_params
+            $URI = "/$GraphVersion/sites/$SiteId"
+            Get-OGNextPage -uri $URI
         }
         'URL' {
-        $SiteURI = [uri]::new($SiteURL)
-
-            $account_params = @{
-                Uri         = "/$GraphVersion/sites/$($SiteURI.Host):/$($SiteURI.LocalPath)"
-                Method      = 'GET'
-                OutputType  = 'PSObject'
-                ContentType = 'application/json'
-            }
-            Invoke-MgGraphRequest @Account_params
+            $SiteURI = [uri]::new($SiteURL)
+            $URI = "/$GraphVersion/sites/$($SiteURI.Host):/$($SiteURI.LocalPath)"
+            Get-OGNextPage -uri $URI
         }
         'All' {
-            $URI = "/$GraphVersion/sites/?$search=*"
+            $URI = "/$GraphVersion/sites"
             $allResults = Get-OGNextPage -uri $URI
             switch ($IncludePersonalSites) {
                 True { $allResults }

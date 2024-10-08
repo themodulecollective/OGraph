@@ -12,7 +12,7 @@
     RootModule           = '.\OGraph.psm1'
 
     # Version number of this module.
-    ModuleVersion        = '0.0.1.24'
+    ModuleVersion        = '0.0.1.25'
 
     # Supported PSEditions
     CompatiblePSEditions = @('Core', 'Desktop')
@@ -94,6 +94,7 @@
         'Get-OGSiteListItem'
         'Get-OGSiteListItemFailureField'
         'Get-OGSiteListItemVersion'
+        'Get-OGSiteSubsite'
         'Get-OGNextPage'
         'Get-OGReadableSku'
         'Get-OGSku'

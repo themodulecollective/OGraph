@@ -11,6 +11,8 @@ $Script:ModuleFiles = @(
     $(Join-Path -Path $functions -ChildPath 'Get-OGDriveUser.ps1')
     $(Join-Path -Path $functions -ChildPath 'Get-OGGraphVersion.ps1')
     $(Join-Path -Path $functions -ChildPath 'Get-OGCalendar.ps1')
+    $(Join-Path -Path $functions -ChildPath 'Get-OGDevice.ps1')
+    $(Join-Path -Path $functions -ChildPath 'Get-OGDeviceRegisteredUser.ps1')
     $(Join-Path -Path $functions -ChildPath 'Get-OGGroup.ps1')
     $(Join-Path -Path $functions -ChildPath 'Get-OGGroupDrive.ps1')
     $(Join-Path -Path $functions -ChildPath 'Get-OGGroupLicense.ps1')

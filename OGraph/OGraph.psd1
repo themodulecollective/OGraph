@@ -12,7 +12,7 @@
     RootModule           = '.\OGraph.psm1'
 
     # Version number of this module.
-    ModuleVersion        = '0.0.1.26'
+    ModuleVersion        = '0.0.1.27'
 
     # Supported PSEditions
     CompatiblePSEditions = @('Core', 'Desktop')
@@ -33,7 +33,7 @@
     Description          = 'PowerShell functions for administration of Microsoft 365 services using Graph endpoints'
 
     # Minimum version of the PowerShell engine required by this module
-    PowerShellVersion    = '7.0'
+    #PowerShellVersion    = '7.0'
 
     # Name of the PowerShell host required by this module
     # PowerShellHostName = ''

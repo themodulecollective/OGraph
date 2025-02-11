@@ -39,7 +39,7 @@ Function Get-OGGroupLicenseReport
 
         'All'
         {
-            $groups = @(Get-OGGroup -All -Property assignedLicenses).where({$_.assignedLicenses.count -ge 1})
+            $groups = @(Get-OGGroup -Licensing)
             $getOGGLRParams = @{IncludeDisplayName = $IncludeDisplayName}
             $groups.foreach({ Get-OGGroupLicenseReport -GroupId $_.id @getOGGLRParams})
         }

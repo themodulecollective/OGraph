@@ -33,7 +33,7 @@
     Description          = 'PowerShell functions for administration of Microsoft 365 services using Graph endpoints'
 
     # Minimum version of the PowerShell engine required by this module
-    #PowerShellVersion    = '7.0'
+    PowerShellVersion    = '5.1'
 
     # Name of the PowerShell host required by this module
     # PowerShellHostName = ''

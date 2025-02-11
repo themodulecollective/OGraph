@@ -1,4 +1,5 @@
 # Releases
+- 0.0.1.27 : Add optimizations for Group Licensing in Get-OGGroup and Get-OGGroupLicenseReport. Enabled Compatibility with Windows Powershell 5.1.
 - 0.0.1.11 : Add -SiteURL parameter and supporting code to Get-OGSite
 - 0.0.1.10 : bug fix 2 for UnifiedAll parameter in Get-OGGroup
 - 0.0.1.9 : bug fix for UnifiedAll parameter in Get-OGGroup
